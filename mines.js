@@ -31,5 +31,3 @@ d3.selectAll("svg").remove();
 var layMines = function(n_mines){
     return 0; // get back to this
 }
-
-refreshGraph()
