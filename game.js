@@ -24,12 +24,11 @@ d3.select("#n_edges").on("input", function() {
 
 d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
-    //layMines(n_bombs);
     layMines();
     setBombsSVG(network);
     calcBombDegree(network);
-    //updateLabelValues(network);
-    //setNodeStyle(network);
+    updateLabelValues(network);
+    setNodeStyle(network);
 });
 
 var refreshGraph = function(){
