@@ -8,7 +8,14 @@ var buildGraph = function(){
           .attr("height", height)
           .attr("viewBox","0 0 "+ width + " " + height)
           .attr("preserveAspectRatio","xMidYMid")
-          ;
+          .call(d3.behavior.zoom().on("zoom", redraw))
+        .append('g');
+
+    function redraw() {
+      svg.attr("transform",
+          "translate(" + d3.event.translate + ")"
+          + " scale(" + d3.event.scale + ")");
+    }   
 
     var aspect = width / height,
         chart = $("#network");
