@@ -6,6 +6,7 @@ position:absolute;
 .inputs_parent {
 z-index:2;
 position:relative;
+width:20%;
 }
 
 .node {
