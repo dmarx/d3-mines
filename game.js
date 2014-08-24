@@ -35,6 +35,7 @@ var refreshGraph = function(){
     var network = buildGraph();
     setBombsSVG(network);
     calcBombDegree(network);
+    updateLabelValues(network);
 }
 
 var layMines = function(n_mines){

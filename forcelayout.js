@@ -63,7 +63,7 @@ var buildGraph = function(){
         .data(graph.nodes)
         .enter().append("circle")
         .attr("class", "node")
-        .attr("id",function(d) { return d.id;})
+        .attr("id",function(d) { return 'x' + d.id;})
         .attr("r", 12)        
         .call(drag);
         
@@ -72,6 +72,7 @@ var buildGraph = function(){
         .enter().append("text")
         .attr("dx", -4)
         .attr("dy", ".35em")
+        .attr("id", function(d) { return 'x' + d.id; })
         .text(function(d) { return d.id; });
         
     force.on("tick", function() {

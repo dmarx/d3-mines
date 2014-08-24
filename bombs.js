@@ -6,7 +6,7 @@ var countBombs = function(d){
     var neighbors = graph.adjacency[d.id];
         var neighbor_bombs = 0;
         for( id in neighbors ){
-            if($('.node.bomb#' + id).length > 0) ++neighbor_bombs;
+            if($('.node.bomb#x' + id).length > 0) ++neighbor_bombs;
         }
     return neighbor_bombs;
 };
@@ -16,3 +16,16 @@ var calcBombDegree = function(network){
         this.setAttribute("bombDegree", countBombs(d));
     });
 }
+
+var updateLabelValues = function(network){
+
+    network.label.each(function(d) {        
+        bd = $(".node#x"+d.id)[0].getAttribute("bombDegree");
+        console.log("next");
+        console.log(d);
+        console.log(this);
+        console.log(bd);
+        this.innerHTML= bd;
+        
+    });
+};
