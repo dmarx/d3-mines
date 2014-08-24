@@ -3,9 +3,21 @@ var buildGraph = function(){
 
     var svg = d3.select("#chart")
           .append("svg")
+          .attr("id", "network")
           .attr("width", width)    
-          .attr("height", height); 
+          .attr("height", height)
+          .attr("viewBox","0 0 "+ width + " " + height)
+          .attr("preserveAspectRatio","xMidYMid")
+          ;
 
+    var aspect = width / height,
+        chart = $("#network");
+    $(window).on("resize", function() {
+        var targetWidth = chart.parent().width();
+        chart.attr("width", targetWidth);
+        chart.attr("height", targetWidth / aspect);
+    });
+          
     var color = d3.scale.category20();
 
     var force = d3.layout.force()
