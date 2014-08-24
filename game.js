@@ -24,7 +24,8 @@ d3.select("#n_edges").on("input", function() {
 
 d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
-    layMines(n_bombs);
+    //layMines(n_bombs);
+    layMines();
     setBombsSVG(network);
     calcBombDegree(network);
     //updateLabelValues(network);
@@ -43,14 +44,15 @@ var refreshGraph = function(){
     setNodeStyle(network);
 }
 
-var layMines = function(n_mines){
+var layMines = function(){
+    if(n_bombs>n_nodes) {n_bombs = n_nodes};
     for(i=0; i<graph.nodes.length; ++i){
         graph.nodes[i].bomb=false;    
         }
 
     var placed = [];
     n = -1;
-    while(placed.length<n_mines){
+    while(placed.length<n_bombs){
         while(n==-1 | placed.indexOf(n)>-1){ 
             n = randInt(n_nodes);
             }
@@ -60,8 +62,6 @@ var layMines = function(n_mines){
 }
 
 function setNodeStyle(network){
-    //return 0;
-
     network.node.each(function(d){
         c = colormap[this.getAttribute('bombDegree')];
         console.log(c);
