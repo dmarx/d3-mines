@@ -10,9 +10,8 @@ width:20%;
 }
 
 .node {
-  stroke: #fff;
+  stroke: black;
   stroke-width: 1.5px;
-  /*r: 5;*/ /* this doesn't seem to work */
 }
 
 .link {
@@ -20,6 +19,61 @@ width:20%;
   stroke-opacity: .6;
 }
 
+/*
 .bomb {
     fill:red;
+}
+*/
+
+/*
+ * conditional coloration based on bomb degree to 
+ * align with minesweeper color scheme. 
+ * The following rules actually don't work right now, but they get the idea 
+ * across.
+ */
+
+/* degree>= 7 */ 
+text {
+  stroke:black;
+  fill:black;
+}
+ 
+text[bombDegree=='1'] {
+  stroke:blue;
+  fill:blue;
+}
+
+[bombDegree] {
+  stroke:blue;
+  fill:blue;
+}
+
+[bombDegree='1'] {
+  stroke:blue;
+  fill:blue;
+}
+
+text[bombDegree='2'] {
+  stroke:green;
+  fill:green;
+}
+
+text[bombDegree==3] {
+  stroke:red;
+  fill:red;
+}
+
+text[bombDegree=4] {
+  stroke:blue;
+  fill:blue;
+}
+
+text[bombDegree='5'] {
+  stroke:brown;
+  fill:brown;
+}
+
+text[bombDegree='6'] {
+  stroke:cyan;
+  fill:cyan;
 }

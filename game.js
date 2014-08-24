@@ -7,8 +7,10 @@ var n_edges = 10;
 var n_bombs = 10;
 var graph = {'nodes':[], 'links':[], 'adjacency':{}};
 
-var width = $(window).width(); //960,
+var width = $(window).width(), //960,
     height = $(window).height(); //500;
+    
+var colormap = ['white','blue','green', 'red', 'blue','brown','cyan','black'];
     
 d3.select("#n_nodes").on("input", function() {
   n_nodes = this.value;
@@ -25,6 +27,8 @@ d3.select("#n_bombs").on("input", function() {
     layMines(n_bombs);
     setBombsSVG(network);
     calcBombDegree(network);
+    //updateLabelValues(network);
+    //setNodeStyle(network);
 });
 
 var refreshGraph = function(){
@@ -36,6 +40,7 @@ var refreshGraph = function(){
     setBombsSVG(network);
     calcBombDegree(network);
     updateLabelValues(network);
+    setNodeStyle(network);
 }
 
 var layMines = function(n_mines){
@@ -53,6 +58,16 @@ var layMines = function(n_mines){
         placed[placed.length] = n;
     }
 }
+
+function setNodeStyle(network){
+    //return 0;
+
+    network.node.each(function(d){
+        c = colormap[this.getAttribute('bombDegree')];
+        console.log(c);
+        this.setAttribute('fill', c);
+    });
+};
 
 /*
 function setLabels(network){

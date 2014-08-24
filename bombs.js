@@ -21,10 +21,7 @@ var updateLabelValues = function(network){
 
     network.label.each(function(d) {        
         bd = $(".node#x"+d.id)[0].getAttribute("bombDegree");
-        console.log("next");
-        console.log(d);
-        console.log(this);
-        console.log(bd);
+        this.setAttribute("bombDegree", bd);
         this.innerHTML= bd;
         
     });
