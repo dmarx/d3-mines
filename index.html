@@ -6,23 +6,38 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="lib/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="main.css">
-<body>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<body>    
+<!-- guidance for form layout: http://purecss.io/forms/ -->
+    <!--<div class="inputs_parent">-->
+    <form class="pure-form pure-form-aligned">
+    <fieldset>
+      <div class="pure-control-group">
+          <label for="n_nodes" class="inputbox">
+                 Nodes: <span id="n_nodes-value"></span>
+          </label>
+          <input type="number" min="0" max="360" step="5" value="20" id="n_nodes" class="forminput">
+      </div>
+      <!--<br>-->
+      <div class="pure-control-group">
+          <label for="n_edges" class="inputbox">
+                 Edges: <span id="n_edges-value"></span>
+          </label>
+          <input type="number" min="0" max="360" step="5" value="30" id="n_edges" class="forminput">
+      </div>
+    <!--<br>-->
+        <div class="pure-control-group">
+          <label for="n_bombs" class="inputbox">
+                 Bombs: <span id="n_bombs-value"></span>
+          </label>
+          <input type="number" min="0" max="360" step="5" value="10" id="n_bombs" class="forminput">
+        </div>    
+    </fieldset>
+    </form>
+    <!--</div>-->
     
-    <div id="inputs">
-    <!--<p>-->
-      <label for="n_nodes" class="inputbox">
-             Number of nodes: <span id="n_nodes-value"></span>
-      </label>
-      <input type="number" min="0" max="360" step="5" value="10" id="n_nodes" class="forminput">
-    <!--</p>-->
-    <!--<p>-->
-    <br>
-      <label for="n_edges" class="inputbox">
-             Number of edges: <span id="n_edges-value"></span>
-      </label>
-      <input type="number" min="0" max="360" step="5" value="10" id="n_edges" class="forminput">
-    <!--</p>-->
-    </div>
+    
+    
     <div id="chart"></div>
 
     
