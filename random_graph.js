@@ -76,6 +76,10 @@ var edgelistToAdjacencylist = function(edge_list){
         edgeHash[n1].push(n2);
         edgeHash[n2].push(n1);
       }
+      
+    for (i=0; i<n_nodes; ++i) {
+        edgeHash[i] = arrayUnique(edgeHash[i]);
+    }
     return edgeHash;
 };
 
