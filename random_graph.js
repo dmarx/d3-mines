@@ -61,7 +61,21 @@ var randGraph = function(n_nodes, n_edges){
     };
     var links = randEdgelist(n_nodes, n_edges);
     //links = enforceSingleConnectedComponent(links);
-    links = enforceNoSingletons(links);    
-    return {'nodes':nodes, 'links':links}
+    links = enforceNoSingletons(links);   
+    adj = edgelistToAdjacencylist(links);
+    return {'nodes':nodes, 'links':links, 'adjacency':adj}
+};
+
+var edgelistToAdjacencylist = function(edge_list){
+    var edgeHash = {};
+    for (i=0; i<edge_list.length; ++i) {
+        var n1 = edge_list[i].source,
+            n2 = edge_list[i].target;
+        if(!(n1 in edgeHash)) edgeHash[n1]=[];
+        if(!(n2 in edgeHash)) edgeHash[n2]=[];
+        edgeHash[n1].push(n2);
+        edgeHash[n2].push(n1);
+      }
+    return edgeHash;
 };
 

@@ -5,7 +5,7 @@
 var n_nodes = 10; // should read these defaults from index.html
 var n_edges = 10;
 var n_bombs = 10;
-var graph = {'nodes':[], 'links':[]};
+var graph = {'nodes':[], 'links':[], 'adjacency':{}};
 
 var width = $(window).width(); //960,
     height = $(window).height(); //500;
@@ -24,16 +24,17 @@ d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
     layMines(n_bombs);
     setBombsSVG(network);
+    calcBombDegree(network);
 });
 
 var refreshGraph = function(){
     console.log("refreshing...");
-d3.selectAll("svg").remove();
-    //console.log(n_nodes, n_edges);    
+    d3.selectAll("svg").remove();   
     graph = randGraph(n_nodes, n_edges);
     layMines(n_bombs);    
     var network = buildGraph();
     setBombsSVG(network);
+    calcBombDegree(network);
 }
 
 var layMines = function(n_mines){
