@@ -52,3 +52,12 @@ var layMines = function(n_mines){
         placed[placed.length] = n;
     }
 }
+
+/*
+function setLabels(network){
+    network.node.each(function(d) {
+        if this.bombDegree
+    });
+};
+
+*/
