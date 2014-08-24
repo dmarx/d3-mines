@@ -67,6 +67,13 @@ var buildGraph = function(){
         .attr("r", 12)        
         .call(drag);
         
+    var label = svg.selectAll(".label")
+        .data(graph.nodes)
+        .enter().append("text")
+        .attr("dx", -4)
+        .attr("dy", ".35em")
+        .text(function(d) { return d.id; });
+        
     force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
@@ -75,11 +82,15 @@ var buildGraph = function(){
 
         node.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
+            
+        label.attr('x', function(d) { return d.x; })
+             .attr('y', function(d) { return d.y; });
       });      
 
     network = {};
     network.node = node;
     network.link = link;
     network.svg = svg;
+    network.label = label
     return network;
 }
