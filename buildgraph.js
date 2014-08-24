@@ -39,15 +39,27 @@ var buildGraph = function(){
     var link = svg.selectAll(".link")
         .data(graph.links)
         .enter().append("line")
-        .attr("class", "link")
-        //.style("stroke-width", function(d) { return Math.sqrt(d.value); });
-        
+        .attr("class", "link");
+  
+  var drag = force.drag()
+    .origin(function(d) { return d; })
+    .on("dragstart", dragstarted)
+    .on("drag", dragged);
+    
+    function dragstarted(d) {
+        d3.event.sourceEvent.stopPropagation();
+    }
+
+    function dragged(d) {
+        d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+    }
+  
     var node = svg.selectAll(".node")
         .data(graph.nodes)
         .enter().append("circle")
         .attr("class", "node")
         .attr("r", 5)        
-        .call(force.drag);
+        .call(drag);
         
     force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })
