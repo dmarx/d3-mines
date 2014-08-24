@@ -1,4 +1,3 @@
-
 var buildGraph = function(){
     d3.select("svg").remove();
 
@@ -28,8 +27,7 @@ var buildGraph = function(){
         .data(graph.nodes)
         .enter().append("circle")
         .attr("class", "node")
-        .attr("r", 5)
-        .classed("bomb", function(d){return d.bomb})
+        .attr("r", 5)        
         .call(force.drag);
         
     force.on("tick", function() {
@@ -41,4 +39,14 @@ var buildGraph = function(){
         node.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
       });      
+
+    network = {};
+    network.node = node;
+    network.link = link;
+    network.svg = svg;
+    return network;
+}
+
+var setBombsSVG = function(network){
+    network.node.classed("bomb", function(d){return d.bomb})
 }
