@@ -37,8 +37,6 @@ d3.selectAll("svg").remove();
 }
 
 var layMines = function(n_mines){
-     //graph.nodes.forEach(function(d){d.bomb = false}); 
-    console.log(graph.nodes);
     for(i=0; i<graph.nodes.length; ++i){
         graph.nodes[i].bomb=false;    
         }
