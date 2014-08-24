@@ -29,7 +29,7 @@ var buildGraph = function(){
         .enter().append("circle")
         .attr("class", "node")
         .attr("r", 5)
-        //.style("fill", function(d) { return color(d.group); })
+        .classed("bomb", function(d){return d.bomb})
         .call(force.drag);
         
     force.on("tick", function() {

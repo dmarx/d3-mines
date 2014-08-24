@@ -7,6 +7,7 @@
 .node {
   stroke: #fff;
   stroke-width: 1.5px;
+  /*r: 5;*/ /* this doesn't seem to work */
 }
 
 .link {
