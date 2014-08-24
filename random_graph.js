@@ -1,4 +1,4 @@
-var randInt = function(bound){return Math.floor((Math.random() * bound))}
+var randInt = function(bound){return Math.floor((Math.random() * bound))};
 
 var randArray = function(m, bound){
     var array = []; 
@@ -6,7 +6,7 @@ var randArray = function(m, bound){
         array[i] = randInt(bound);
     };
     return array;
-}
+};
 
 var randMatrix = function(n,m,bound){
     var matrix = [];
@@ -14,7 +14,7 @@ var randMatrix = function(n,m,bound){
         matrix[j] = randArray(m, bound);
     };
     return matrix;
-}
+};
 
 var randEdgelist = function(n_nodes, n_edges){
     edges_matrix = randMatrix(n_edges,2,n_nodes);
@@ -22,14 +22,46 @@ var randEdgelist = function(n_nodes, n_edges){
     for(i=0; i<n_edges; ++i){
         edges_list[i] = {'source':edges_matrix[i][0],
                          'target':edges_matrix[i][1]};
-    }
+    };
     return edges_list;
-}
+};
+
+var arrayUnique = function(a) {
+    return a.reduce(function(p, c) {
+        if (p.indexOf(c) < 0) p.push(c);
+        return p;
+    }, []);
+};
+
+//var enforceSingleConnectedComponent = function(edge_list){ // this would be a bit more involved.
+var enforceNoSingletons = function(edge_list){
+    connected_nodes = [];
+    edge_list.forEach(function(e){
+        connected_nodes.push(e.source);
+        connected_nodes.push(e.target);
+    });
+    connected_nodes = arrayUnique(connected_nodes);
+    
+    for(n=0; n<n_nodes; ++n){
+        if(connected_nodes.indexOf(n) < 0){
+            var j = randInt(connected_nodes.length);
+            var n2 = connected_nodes[j];
+            edge_list.push({'source':n, 'target':n2});
+            //connected_nodes.push(n);
+        }
+    };
+    
+    return edge_list;
+};
 
 var randGraph = function(n_nodes, n_edges){
     var nodes = [];
     for(i=0; i<n_nodes; ++i){
         nodes[i] = {'id':i};
-    }
-    return {'nodes':nodes, 'links':randEdgelist(n_nodes, n_edges)}
-}
+    };
+    var links = randEdgelist(n_nodes, n_edges);
+    //links = enforceSingleConnectedComponent(links);
+    links = enforceNoSingletons(links);    
+    return {'nodes':nodes, 'links':links}
+};
+
