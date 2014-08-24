@@ -8,9 +8,6 @@ var countBombs = function(d){
         for( id in neighbors ){
             if($('.node.bomb#' + id).length > 0) ++neighbor_bombs;
         }
-        console.log(d.id);
-    console.log(neighbors);
-    console.log(neighbor_bombs);
     return neighbor_bombs;
 };
 
