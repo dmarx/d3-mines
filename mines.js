@@ -24,10 +24,18 @@ var refreshGraph = function(){
 d3.selectAll("svg").remove();
     //console.log(n_nodes, n_edges);    
     graph = randGraph(n_nodes, n_edges);
-    layMines();    
+    layMines(10);    
     buildGraph();
 }
 
 var layMines = function(n_mines){
-    return 0; // get back to this
+    var placed = [];
+    n = -1;
+    while(placed.length<n_mines){
+        while(n==-1 | placed.indexOf(n)>-1){ 
+            n = randInt(n_nodes);
+            }
+        graph.nodes[n].bomb = true;
+        placed[placed.length] = n;
+    }
 }
