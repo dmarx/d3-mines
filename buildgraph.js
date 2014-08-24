@@ -1,6 +1,16 @@
 var buildGraph = function(){
     d3.select("svg").remove();
 
+    var zoom = d3.behavior.zoom()
+        .scaleExtent([1, 10])
+        .on("zoom", zoomed);
+    
+    function zoomed() {
+      svg.attr("transform",
+          "translate(" + d3.event.translate + ")"
+          + " scale(" + d3.event.scale + ")");
+    };   
+    
     var svg = d3.select("#chart")
           .append("svg")
           .attr("id", "network")
@@ -8,14 +18,8 @@ var buildGraph = function(){
           .attr("height", height)
           .attr("viewBox","0 0 "+ width + " " + height)
           .attr("preserveAspectRatio","xMidYMid")
-          .call(d3.behavior.zoom().on("zoom", redraw))
+          .call(zoom)
         .append('g');
-
-    function redraw() {
-      svg.attr("transform",
-          "translate(" + d3.event.translate + ")"
-          + " scale(" + d3.event.scale + ")");
-    }   
 
     var aspect = width / height,
         chart = $("#network");
