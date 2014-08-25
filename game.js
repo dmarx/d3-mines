@@ -29,7 +29,8 @@ d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
     layMines();
     setBombsSVG(network);
-    calcBombDegree(network);
+    //calcBombDegree(network);
+    network.setLabels();
     updateLabelValues(network);
     setNodeStyle(network);
 });
@@ -41,17 +42,31 @@ var refreshGraph = function(){
     layMines(n_bombs);    
     var network = buildGraph();
     setBombsSVG(network);
-    calcBombDegree(network);
+    //calcBombDegree(network);    
     updateLabelValues(network);
     setNodeStyle(network);
 }
 
+var countBombs = function(id){
+    var neighbors = graph.adjacency[id];
+    var neighbor_bombs = 0;
+    for(i=0; i<neighbors.length; ++i){
+        n_id = neighbors[i];
+        if(graph.nodes[n_id].bomb){ 
+            ++neighbor_bombs;
+        };
+    }
+    return neighbor_bombs;
+};
+
 var layMines = function(){
+    //flush old bombs
     if(+n_bombs>+n_nodes) {n_bombs = n_nodes;};
     for(i=0; i<graph.nodes.length; ++i){
         graph.nodes[i].bomb=false;    
         }
 
+    //place new bombs
     var placed = [];
     n = -1;
     while(placed.length<n_bombs){
@@ -60,6 +75,15 @@ var layMines = function(){
             }
         graph.nodes[n].bomb = true;
         placed[placed.length] = n;
+    }
+    
+    //Calculate bombDegree
+    for(id=0; id<graph.nodes.length; ++id){
+        graph.nodes[id].bombDegree = countBombs(id);   
+        var label = "X";
+        if(!graph.nodes[id].bomb){
+            label = Math.min(graph.nodes[id].bombDegree, 9)}; //make sure colors are thresholded
+        graph.nodes[id].label = label;
     }
 }
 

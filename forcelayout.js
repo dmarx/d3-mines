@@ -1,5 +1,4 @@
-var buildGraph = function(){
-    d3.select("svg").remove();
+var color = d3.scale.category10().domain([0, 1, 2, 'X', 3, 4, 5, 6, 7, 8]);
 
     var zoom = d3.behavior.zoom()
         .scaleExtent([1, 10])
@@ -9,7 +8,10 @@ var buildGraph = function(){
       svg.attr("transform",
           "translate(" + d3.event.translate + ")"
           + " scale(" + d3.event.scale + ")");
-    };   
+    }; 
+    
+var buildGraph = function(){
+    d3.select("svg").remove();  
     
     var svg = d3.select("#chart")
           .append("svg")
@@ -30,22 +32,11 @@ var buildGraph = function(){
         chart.attr("height", targetWidth / aspect);
     });
           
-    var color = d3.scale.category20();
-
     var force = d3.layout.force()
         .charge(-320)
         .linkDistance(80)
         .size([width, height]);
 
-    force.nodes(graph.nodes)
-         .links(graph.links)
-         .start();
-
-    var link = svg.selectAll(".link")
-        .data(graph.links)
-        .enter().append("line")
-        .attr("class", "link");
-  
   var drag = force.drag()
     .origin(function(d) { return d; })
     .on("dragstart", dragstarted)
@@ -58,40 +49,55 @@ var buildGraph = function(){
     function dragged(d) {
         d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
     }
+        
+    force.nodes(graph.nodes)
+         .links(graph.links)
+         .start();
+
+    var link = svg.selectAll(".link")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", "link");
   
-    var node = svg.selectAll(".node")
+
+  
+    var node = svg.selectAll("g.node")
         .data(graph.nodes)
-        .enter().append("circle")
+        .enter().append("g")
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
-        .attr("r", 12)        
         .call(drag);
         
-    var label = svg.selectAll(".label")
-        .data(graph.nodes)
-        .enter().append("text")
-        .attr("dx", -4)
-        .attr("dy", ".35em")
-        .attr("id", function(d) { return 'x' + d.id; })
-        .text(function(d) { return d.id; });
+    node.append("circle")
+        .attr("class", "node")
+        .attr("id",function(d) { return 'x' + d.id;})
+        .attr("r", 12);
+    
+    function setLabels(){
+        node.select("text").remove();
+        node.append("text")
+            .attr("dx", -4)
+            .attr("dy", ".35em")
+            .attr("id", function(d) { return 'x' + d.id; })
+            .text(function(d) { return d.label; });
+        node.select("circle").attr("fill", function(d){return color(d.label)});
+    };
+    setLabels()
         
     force.on("tick", function() {
         link.attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
-
-        node.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
             
-        label.attr('x', function(d) { return d.x; })
-             .attr('y', function(d) { return d.y; });
+        node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
       });      
 
     network = {};
     network.node = node;
     network.link = link;
     network.svg = svg;
-    network.label = label
+    //network.label = label
+    network.setLabels = setLabels;
     return network;
 }
