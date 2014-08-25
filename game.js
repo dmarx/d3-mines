@@ -29,9 +29,7 @@ d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
     layMines();
     setBombsSVG(network);
-    //calcBombDegree(network);
     network.setLabels();
-    updateLabelValues(network);
     setNodeStyle(network);
 });
 
@@ -42,8 +40,6 @@ var refreshGraph = function(){
     layMines(n_bombs);    
     var network = buildGraph();
     setBombsSVG(network);
-    //calcBombDegree(network);    
-    updateLabelValues(network);
     setNodeStyle(network);
 }
 

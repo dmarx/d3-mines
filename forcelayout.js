@@ -58,9 +58,7 @@ var buildGraph = function(){
         .data(graph.links)
         .enter().append("line")
         .attr("class", "link");
-  
-
-  
+   
     var node = svg.selectAll("g.node")
         .data(graph.nodes)
         .enter().append("g")
@@ -81,6 +79,7 @@ var buildGraph = function(){
             .attr("id", function(d) { return 'x' + d.id; })
             .text(function(d) { return d.label; });
         node.select("circle").attr("fill", function(d){return color(d.label)});
+        node.classed("bomb", function(d){return d.bomb})
     };
     setLabels()
         
