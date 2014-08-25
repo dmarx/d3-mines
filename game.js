@@ -1,14 +1,12 @@
 // input form guidance: http://bl.ocks.org/d3noob/10633704
 // simple d3 force layout: http://bl.ocks.org/mbostock/4062045
-// possibly better demo: http://jsfiddle.net/blt909/aVhd8/20/
 
-var n_nodes = 10; // should read these defaults from index.html
-var n_edges = 10;
-var n_bombs = 10;
-var graph = {'nodes':[], 'links':[], 'adjacency':{}};
-
-var width = $(window).width(), //960,
-    height = $(window).height(); //500;
+var n_nodes = d3.select("input#n_nodes").attr("value"),
+    n_edges = d3.select("input#n_edges").attr("value"),
+    n_bombs = d3.select("input#n_bombs").attr("value"),
+    graph = {'nodes':[], 'links':[], 'adjacency':{}},
+    width = $(window).width(),
+    height = $(window).height();
     
 d3.select("#n_nodes").on("input", function() {
   n_nodes = this.value;
