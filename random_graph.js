@@ -77,6 +77,12 @@ function hideAll(){
     }
 }
 
+function showAll(){
+    for(i=0; i<n_nodes; ++i){
+        this.nodes[i].visible = true;
+    }
+}
+
 function randGraph(n_nodes, n_edges){
     var nodes = [];
     for(i=0; i<n_nodes; ++i){
@@ -86,6 +92,6 @@ function randGraph(n_nodes, n_edges){
     //links = enforceSingleConnectedComponent(links);
     links = enforceNoSingletons(links);   
     adj = edgelistToAdjacencylist(links);
-    return {'nodes':nodes, 'links':links, 'adjacency':adj, 'hideAll':hideAll}
+    return {'nodes':nodes, 'links':links, 'adjacency':adj, 'hideAll':hideAll, 'showAll':showAll}
 };
 

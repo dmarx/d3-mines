@@ -1,4 +1,5 @@
 var color = d3.scale.category10().domain([0, 1, 2, 'X', 3, 4, 5, 6, 7, 8]);
+var default_color = "black";
     
 function buildGraph(){
     d3.select("svg").remove();  
@@ -60,6 +61,7 @@ function buildGraph(){
         .attr("class", "link");
    
     function nodeClick(d){
+        if(d.bomb && !d.visible) graph.showAll();
         graph.nodes[d.id].visible = true;
         setLabels();
         }
@@ -79,6 +81,8 @@ function buildGraph(){
     
     function setLabels(){
         node.select("text").remove();
+        node.select("circle").attr("fill", default_color);
+        
         node.classed("visible", function(d){return d.visible});
         node.filter(".visible")
             .append("text")
