@@ -62,17 +62,12 @@ var layMines = function(){
 
 function setNodeStyle(network){
     network.node.each(function(d){
-        c = colormap[this.getAttribute('bombDegree')];
-        console.log(c);
-        this.setAttribute('fill', c);
+        if(d.bomb){
+            this.setAttribute('fill', "red");
+            $("text#x"+d.id)[0].innerHTML="X";
+        }else{
+            c = colormap[this.getAttribute('bombDegree')];
+            this.setAttribute('fill', c);
+        };
     });
 };
-
-/*
-function setLabels(network){
-    network.node.each(function(d) {
-        if this.bombDegree
-    });
-};
-
-*/

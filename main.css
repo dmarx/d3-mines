@@ -32,7 +32,8 @@ width:20%;
  * across.
  */
 
-/* degree>= 7 */ 
+ 
+/* 
 text {
   stroke:black;
   fill:black;
@@ -77,3 +78,4 @@ text[bombDegree='6'] {
   stroke:cyan;
   fill:cyan;
 }
+*/
