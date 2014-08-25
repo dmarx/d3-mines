@@ -73,12 +73,14 @@ function buildGraph(){
     
     function setLabels(){
         node.select("text").remove();
-        node.append("text")
+        node.classed("visible", function(d){return d.visible});
+        node.filter(".visible")
+            .append("text")
             .attr("dx", -4)
             .attr("dy", ".35em")
             .attr("id", function(d) { return 'x' + d.id; })
             .text(function(d) { return d.label; });
-        node.select("circle").attr("fill", function(d){return color(d.label)});
+        node.select(".visible>circle").attr("fill", function(d){return color(d.label)});
         node.classed("bomb", function(d){return d.bomb})
     };
     setLabels()

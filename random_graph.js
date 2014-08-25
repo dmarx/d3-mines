@@ -54,18 +54,6 @@ function enforceNoSingletons(edge_list){
     return edge_list;
 };
 
-function randGraph(n_nodes, n_edges){
-    var nodes = [];
-    for(i=0; i<n_nodes; ++i){
-        nodes[i] = {'id':i};
-    };
-    var links = randEdgelist(n_nodes, n_edges);
-    //links = enforceSingleConnectedComponent(links);
-    links = enforceNoSingletons(links);   
-    adj = edgelistToAdjacencylist(links);
-    return {'nodes':nodes, 'links':links, 'adjacency':adj}
-};
-
 function edgelistToAdjacencylist(edge_list){
     var edgeHash = {};
     for (i=0; i<edge_list.length; ++i) {
@@ -81,5 +69,23 @@ function edgelistToAdjacencylist(edge_list){
         edgeHash[i] = arrayUnique(edgeHash[i]);
     }
     return edgeHash;
+};
+
+function hideAll(){
+    for(i=0; i<n_nodes; ++i){
+        this.nodes[i].visible = false;
+    }
+}
+
+function randGraph(n_nodes, n_edges){
+    var nodes = [];
+    for(i=0; i<n_nodes; ++i){
+        nodes[i] = {'id':i, 'visible':false};
+    };
+    var links = randEdgelist(n_nodes, n_edges);
+    //links = enforceSingleConnectedComponent(links);
+    links = enforceNoSingletons(links);   
+    adj = edgelistToAdjacencylist(links);
+    return {'nodes':nodes, 'links':links, 'adjacency':adj, 'hideAll':hideAll}
 };
 

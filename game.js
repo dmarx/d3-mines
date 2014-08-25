@@ -21,6 +21,7 @@ d3.select("#n_edges").on("input", function() {
 d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
     layMines();
+    graph.hideAll();
     network.setLabels();
 });
 
