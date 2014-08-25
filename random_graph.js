@@ -1,6 +1,6 @@
-var randInt = function(bound){return Math.floor((Math.random() * bound))};
+function randInt(bound){return Math.floor((Math.random() * bound))};
 
-var randArray = function(m, bound){
+function randArray(m, bound){
     var array = []; 
     for (i=0; i<m; ++i){
         array[i] = randInt(bound);
@@ -8,7 +8,7 @@ var randArray = function(m, bound){
     return array;
 };
 
-var randMatrix = function(n,m,bound){
+function randMatrix(n,m,bound){
     var matrix = [];
     for (j=0; j<n; ++j){
         matrix[j] = randArray(m, bound);
@@ -16,7 +16,7 @@ var randMatrix = function(n,m,bound){
     return matrix;
 };
 
-var randEdgelist = function(n_nodes, n_edges){
+function randEdgelist(n_nodes, n_edges){
     edges_matrix = randMatrix(n_edges,2,n_nodes);
     edges_list = [];
     for(i=0; i<n_edges; ++i){
@@ -26,7 +26,7 @@ var randEdgelist = function(n_nodes, n_edges){
     return edges_list;
 };
 
-var arrayUnique = function(a) {
+function arrayUnique(a) {
     return a.reduce(function(p, c) {
         if (p.indexOf(c) < 0) p.push(c);
         return p;
@@ -34,7 +34,7 @@ var arrayUnique = function(a) {
 };
 
 //var enforceSingleConnectedComponent = function(edge_list){ // this would be a bit more involved.
-var enforceNoSingletons = function(edge_list){
+function enforceNoSingletons(edge_list){
     connected_nodes = [];
     edge_list.forEach(function(e){
         connected_nodes.push(e.source);
@@ -54,7 +54,7 @@ var enforceNoSingletons = function(edge_list){
     return edge_list;
 };
 
-var randGraph = function(n_nodes, n_edges){
+function randGraph(n_nodes, n_edges){
     var nodes = [];
     for(i=0; i<n_nodes; ++i){
         nodes[i] = {'id':i};
@@ -66,7 +66,7 @@ var randGraph = function(n_nodes, n_edges){
     return {'nodes':nodes, 'links':links, 'adjacency':adj}
 };
 
-var edgelistToAdjacencylist = function(edge_list){
+function edgelistToAdjacencylist(edge_list){
     var edgeHash = {};
     for (i=0; i<edge_list.length; ++i) {
         var n1 = edge_list[i].source,

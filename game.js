@@ -24,7 +24,7 @@ d3.select("#n_bombs").on("input", function() {
     network.setLabels();
 });
 
-var refreshGraph = function(){
+function refreshGraph(){
     console.log("refreshing...");
     d3.selectAll("svg").remove();   
     graph = randGraph(n_nodes, n_edges);
@@ -32,7 +32,7 @@ var refreshGraph = function(){
     var network = buildGraph();
 }
 
-var countBombs = function(id){
+function countBombs(id){
     var neighbors = graph.adjacency[id];
     var neighbor_bombs = 0;
     for(i=0; i<neighbors.length; ++i){
@@ -44,7 +44,7 @@ var countBombs = function(id){
     return neighbor_bombs;
 };
 
-var layMines = function(){
+function layMines(){
     //flush old bombs
     if(+n_bombs>+n_nodes) {n_bombs = n_nodes;};
     for(i=0; i<graph.nodes.length; ++i){
