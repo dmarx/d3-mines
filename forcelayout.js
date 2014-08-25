@@ -33,7 +33,7 @@ var buildGraph = function(){
     var color = d3.scale.category20();
 
     var force = d3.layout.force()
-        .charge(-120)
+        .charge(-320)
         .linkDistance(80)
         .size([width, height]);
 
