@@ -10,11 +10,6 @@ var graph = {'nodes':[], 'links':[], 'adjacency':{}};
 var width = $(window).width(), //960,
     height = $(window).height(); //500;
     
-/* Colors are chosen to resemble minesweeper selections, but specific colors
- * are from Colorbrewer (qualitative, 7 colors)
- */ 
- var colormap = ['white','#377eb8','#4daf4a', '#f781bf', '#ff7f00','#a65628','#984ea3'];
-    
 d3.select("#n_nodes").on("input", function() {
   n_nodes = this.value;
   refreshGraph();
@@ -28,9 +23,7 @@ d3.select("#n_edges").on("input", function() {
 d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
     layMines();
-    setBombsSVG(network);
     network.setLabels();
-    setNodeStyle(network);
 });
 
 var refreshGraph = function(){
@@ -39,8 +32,6 @@ var refreshGraph = function(){
     graph = randGraph(n_nodes, n_edges);
     layMines(n_bombs);    
     var network = buildGraph();
-    setBombsSVG(network);
-    setNodeStyle(network);
 }
 
 var countBombs = function(id){
@@ -82,18 +73,3 @@ var layMines = function(){
         graph.nodes[id].label = label;
     }
 }
-
-function setNodeStyle(network){
-    network.node.each(function(d){
-        var c = "#ffff33";
-        if(d.bomb){
-            c="#e41a1c";
-            $("text#x"+d.id)[0].innerHTML="X";
-        }else{
-            var deg = this.getAttribute('bombDegree')
-            if(deg<=colormap.length){
-                c = colormap[deg]};
-        };
-        this.setAttribute('fill', c);
-    });
-};
