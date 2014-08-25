@@ -13,7 +13,7 @@ var width = $(window).width(), //960,
 /* Colors are chosen to resemble minesweeper selections, but specific colors
  * are from Colorbrewer (qualitative, 7 colors)
  */ 
-var colormap = ['white','#377eb8','#4daf4a', '#e41a1c', '#ff7f00','#a65628','#984ea3','#ffff33'];
+ var colormap = ['white','#377eb8','#4daf4a', '#f781bf', '#ff7f00','#a65628','#984ea3'];
     
 d3.select("#n_nodes").on("input", function() {
   n_nodes = this.value;
@@ -47,7 +47,7 @@ var refreshGraph = function(){
 }
 
 var layMines = function(){
-    if(n_bombs>n_nodes) {n_bombs = n_nodes};
+    if(+n_bombs>+n_nodes) {n_bombs = n_nodes;};
     for(i=0; i<graph.nodes.length; ++i){
         graph.nodes[i].bomb=false;    
         }
@@ -65,9 +65,9 @@ var layMines = function(){
 
 function setNodeStyle(network){
     network.node.each(function(d){
-        var c = "black";
+        var c = "#ffff33";
         if(d.bomb){
-            c="#f781bf";
+            c="#e41a1c";
             $("text#x"+d.id)[0].innerHTML="X";
         }else{
             var deg = this.getAttribute('bombDegree')
