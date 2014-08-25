@@ -59,12 +59,18 @@ function buildGraph(){
         .enter().append("line")
         .attr("class", "link");
    
+    function nodeClick(d){
+        graph.nodes[d.id].visible = true;
+        setLabels();
+        }
+   
     var node = svg.selectAll("g.node")
         .data(graph.nodes)
         .enter().append("g")
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
-        .call(drag);
+        .on("mouseup", function(d){nodeClick(d)})
+        .call(drag);       
         
     node.append("circle")
         .attr("class", "node")
