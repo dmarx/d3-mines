@@ -7,7 +7,6 @@ function wasRightClick() {
         //if (d3.event.sourceEvent.which == 3 || d3.event.sourceEvent.button == 2) { //3==firefox, 2==ie 
         if (d3.event.button == 2) { //3==firefox, 2==ie 
             isRight = true;};
-    console.log("right click: " + isRight);
     return isRight;
     }
     
@@ -71,12 +70,23 @@ function buildGraph(){
         .attr("class", "link");
    
     function mouseDown(d){
-        wasRightClick();
         d.fixed=true;
-        if(d.bomb && !d.visible) graph.showAll();
-        graph.nodes[d.id].visible = true;
+        if(wasRightClick()){ 
+            return 0; //Break out. Handling right click events separately
+            }
+        if(d.bomb && !d.visible && !d.flagged) {
+            graph.showAll();
+        }else if(!d.flagged){
+            graph.nodes[d.id].visible = true;
+        }
         setLabels();
     };
+    
+    function rightClick(d){
+        if(!d.visible){d.flagged = !d.flagged;};
+        d3.event.preventDefault();
+    }
+   
    
     var node = svg.selectAll("g.node")
         .data(graph.nodes)
@@ -84,7 +94,7 @@ function buildGraph(){
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
         .on("mousedown", function(d){mouseDown(d)})
-        .on("contextmenu", function(data, index) {d3.event.preventDefault();})
+        .on("contextmenu", function(d) {rightClick(d)} )
         .call(drag);       
         
     node.append("circle")

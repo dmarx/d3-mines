@@ -86,7 +86,7 @@ function showAll(){
 function randGraph(n_nodes, n_edges){
     var nodes = [];
     for(i=0; i<n_nodes; ++i){
-        nodes[i] = {'id':i, 'visible':false};
+        nodes[i] = {'id':i, 'visible':false, 'flagged':false};
     };
     var links = randEdgelist(n_nodes, n_edges);
     //links = enforceSingleConnectedComponent(links);
