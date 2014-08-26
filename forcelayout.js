@@ -47,10 +47,10 @@ function buildGraph(){
         .linkDistance(80)
         .size([width, height]);
 
-  var drag = force.drag()
-    .origin(function(d) { return d; })
-    .on("dragstart", dragstarted)
-    .on("drag", dragged);
+    var drag = force.drag()
+        .origin(function(d) { return d; })
+        .on("dragstart", dragstarted)
+        .on("drag", dragged);
     
     function dragstarted(d) {
         d3.event.sourceEvent.stopPropagation();
