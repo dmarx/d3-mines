@@ -83,9 +83,18 @@ function buildGraph(){
     };
     
     function rightClick(d){
-        if(!d.visible){d.flagged = !d.flagged;};
+        //if(!d.visible){d.flagged = !d.flagged;};
+        if(!d.visible && !d.flagged){
+            d.flagged = true;
+            n_flags -=1;
+        } else if(!d.visible && d.flagged){
+            d.flagged = false;
+            ++n_flags;
+        };
+            
         d3.event.preventDefault();
         setLabels();
+        updateFlagsCount();
     }
     
     function doubleClick(d){

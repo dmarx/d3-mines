@@ -1,9 +1,10 @@
 // input form guidance: http://bl.ocks.org/d3noob/10633704
 // simple d3 force layout: http://bl.ocks.org/mbostock/4062045
 
-var n_nodes = d3.select("input#n_nodes").attr("value"),
+var n_nodes = d3.select("input#n_nodes").attr("value"),    
     n_edges = d3.select("input#n_edges").attr("value"),
     n_bombs = d3.select("input#n_bombs").attr("value"),
+    n_flags = n_bombs;
     graph = {'nodes':[], 'links':[], 'adjacency':{}},
     width = $(window).width(),
     height = $(window).height();
@@ -20,9 +21,11 @@ d3.select("#n_edges").on("input", function() {
 
 d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
+    n_flags = n_bombs;
     layMines();
     graph.hideAll();
     network.setLabels();
+    updateFlagsCount();
 });
 
 function refreshGraph(){
@@ -31,6 +34,7 @@ function refreshGraph(){
     graph = randGraph(n_nodes, n_edges);
     layMines(n_bombs);    
     var network = buildGraph();
+    updateFlagsCount();
 }
 
 function countBombs(id){

@@ -9,6 +9,12 @@ position:relative;
 width:300px;
 }
 
+.flag_counter {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
 .node {
   stroke: black;
   stroke-width: 1.5px;
