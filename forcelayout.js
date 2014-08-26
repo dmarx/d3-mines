@@ -31,7 +31,7 @@ function buildGraph(){
           .attr("viewBox","0 0 "+ width + " " + height)
           .attr("preserveAspectRatio","xMidYMid")
           .call(zoom)
-          .on("dblclick.zoom", null)
+          .on("dblclick.zoom", null)          
         .append('g');
 
     var aspect = width / height,
@@ -87,6 +87,24 @@ function buildGraph(){
         d3.event.preventDefault();
         setLabels();
     }
+    
+    function doubleClick(d){
+        if(!d.visible){
+            return null;
+        };
+        var neighborhood = graph.adjacency[d.id],
+            neighbor_flags = 0;
+        for(i=0; i<neighborhood.length; ++i){
+            if(graph.nodes[i].flagged) ++neighbor_flags;
+        };
+        if(neighbor_flags == d.bombDegree){
+            for(i=0; i<neighborhood.length; ++i){
+                var target = graph.nodes[neighborhood[i]];
+                if(!target.flagged) target.visible = true;
+            };
+        }
+        setLabels()
+    };
    
     var node = svg.selectAll("g.node")
         .data(graph.nodes)
@@ -95,6 +113,7 @@ function buildGraph(){
         .attr("id",function(d) { return 'x' + d.id;})
         .on("mousedown", function(d){mouseDown(d)})
         .on("contextmenu", function(d) {rightClick(d)} )
+        .on("dblclick", function(d) {doubleClick(d)})
         .call(drag);       
     
     node.append("circle")

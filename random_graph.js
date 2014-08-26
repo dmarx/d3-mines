@@ -74,6 +74,7 @@ function edgelistToAdjacencylist(edge_list){
 function hideAll(){
     for(i=0; i<n_nodes; ++i){
         this.nodes[i].visible = false;
+        this.nodes[i].flagged = false;
     }
 }
 
