@@ -1,13 +1,15 @@
 svg {
-z-index:1;
-position:absolute;
+    z-index:1;
+    position:absolute;
 }
 
-.inputs_parent {
-z-index:2;
-position:absolute;
-width:300px;
+#leftbar {
+    z-index:2;
+    position:absolute;
+    width:300px;
+    text-align:center;
 }
+
 
 #flag_counter  {
     z-index:2;

@@ -9,6 +9,10 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     width = $(window).width(),
     height = $(window).height();
     
+d3.select("#app-reset-button").on("mouseup", function(){
+        refreshGraph();
+    });
+    
 d3.select("#n_nodes").on("input", function() {
   n_nodes = this.value;
   refreshGraph();
