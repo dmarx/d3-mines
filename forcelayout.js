@@ -1,5 +1,15 @@
 var color = d3.scale.category10().domain([0, 1, 2, 'X', 3, 4, 5, 6, 7, 8]);
 var default_color = "black";
+
+
+function wasRightClick() { 
+    var isRight = false;
+        //if (d3.event.sourceEvent.which == 3 || d3.event.sourceEvent.button == 2) { //3==firefox, 2==ie 
+        if (d3.event.button == 2) { //3==firefox, 2==ie 
+            isRight = true;};
+    console.log("right click: " + isRight);
+    return isRight;
+    }
     
 function buildGraph(){
     d3.select("svg").remove();  
@@ -60,7 +70,8 @@ function buildGraph(){
         .enter().append("line")
         .attr("class", "link");
    
-    function mouseUp(d){
+    function mouseDown(d){
+        wasRightClick();
         d.fixed=true;
         if(d.bomb && !d.visible) graph.showAll();
         graph.nodes[d.id].visible = true;
@@ -72,7 +83,8 @@ function buildGraph(){
         .enter().append("g")
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
-        .on("mouseup", function(d){mouseUp(d)})
+        .on("mousedown", function(d){mouseDown(d)})
+        .on("contextmenu", function(data, index) {d3.event.preventDefault();})
         .call(drag);       
         
     node.append("circle")
