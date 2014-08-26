@@ -1,5 +1,5 @@
 var color = d3.scale.category10().domain([0, 1, 2, 'X', 3, 4, 5, 6, 7, 8]);
-var default_color = "black";
+var default_color = "grey"; // this should probably be handled in the css
 
 
 function wasRightClick() { 
