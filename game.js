@@ -30,6 +30,7 @@ d3.select("#n_bombs").on("input", function() {
     graph.hideAll();
     network.setLabels();
     updateFlagsCount();
+    buildHistogram();
 });
 
 function refreshGraph(){
@@ -39,6 +40,7 @@ function refreshGraph(){
     layMines(n_bombs);    
     var network = buildGraph();
     updateFlagsCount();
+    buildHistogram();
 }
 
 function countBombs(id){

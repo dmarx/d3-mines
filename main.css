@@ -42,3 +42,17 @@ svg {
   stroke: #999;
   stroke-opacity: .6;
 }
+
+#histogram-container >svg{
+    width:10%;
+}
+
+#histogram rect {
+  fill: steelblue;
+  stroke:white;
+}
+
+#histogram text {
+  font: 10px sans-serif;
+  text-anchor: end;
+}
