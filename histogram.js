@@ -30,13 +30,16 @@ function getBombDegreeDistribution(){
     return Counter.values();
 }
 
-function buildHistogram(){
+var xvals=[];
 
+function buildHistogram(){
+    xvals=[]
     freq = getBombDegreeDistribution();
 
     data = [];
     for(i=0; i<freq.length; ++i){
         data.push({'x':i, 'y':freq[i]});
+        xvals.push(i);
     }
 
     console.log(data);
@@ -47,10 +50,19 @@ function buildHistogram(){
         h_width = 960 - margin.left - margin.right,
         h_height = 500 - margin.top - margin.bottom;
 
-    var x = d3.scale.linear()
+    var x_helper = d3.scale.linear()
         .domain([0,freq.length])
         .range([0, h_width], .7);
 
+    var xrange = [];
+    for(i=0; i<xvals.length; ++i){
+        xrange.push(x_helper(xvals[i]))
+    };
+        
+    var x = d3.scale.ordinal()
+        .domain(xvals)
+        .range(xrange, .7);
+        
     for(i=0; i<freq.length; ++i){
     console.log("test");
     console.log(x(i));
@@ -74,12 +86,6 @@ function buildHistogram(){
         .attr("height", h_height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    /*
-    d3.tsv("data.tsv", type, function(error, data) {
-      x.domain(data.map(function(d) { return d.letter; }));
-      y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-    */
 
       hist_svg.append("g")
           .attr("class", "x axis")
