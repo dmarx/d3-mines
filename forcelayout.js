@@ -85,8 +85,8 @@ function buildGraph(){
     function rightClick(d){
         if(!d.visible){d.flagged = !d.flagged;};
         d3.event.preventDefault();
+        setLabels();
     }
-   
    
     var node = svg.selectAll("g.node")
         .data(graph.nodes)
@@ -96,24 +96,34 @@ function buildGraph(){
         .on("mousedown", function(d){mouseDown(d)})
         .on("contextmenu", function(d) {rightClick(d)} )
         .call(drag);       
-        
+    
     node.append("circle")
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
         .attr("r", 12);
+    
+        node.append("circle")
+        .attr("class", "halo")
+        .attr("id",function(d) { return 'x' + d.id;})
+        .attr("r", 16)
+        .attr("stroke-opacity",0)
+        ;
     
     function setLabels(){
         node.select("text").remove();
         node.select("circle").attr("fill", default_color);
         
         node.classed("visible", function(d){return d.visible});
+        node.classed("flagged", function(d){return d.flagged});
         node.filter(".visible")
             .append("text")
             .attr("dx", -4)
             .attr("dy", ".35em")
             .attr("id", function(d) { return 'x' + d.id; })
             .text(function(d) { return d.label; });
-        node.select(".visible>circle").attr("fill", function(d){return color(d.label)});
+        node.select(".visible>circle.node").attr("fill", function(d){return color(d.label)});
+        node.select("circle.halo").attr("stroke-opacity", 0);
+        node.select(".flagged>circle.halo").attr("stroke-opacity", 1);
         node.classed("bomb", function(d){return d.bomb})
     };
     setLabels()

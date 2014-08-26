@@ -14,6 +14,12 @@ width:300px;
   stroke-width: 1.5px;
 }
 
+.halo {
+    fill-opacity:0;
+    stroke:red;
+    stroke-width: 3px;
+}
+
 .link {
   stroke: #999;
   stroke-opacity: .6;
