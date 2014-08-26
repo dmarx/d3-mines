@@ -60,11 +60,8 @@ function buildGraph(){
         .enter().append("line")
         .attr("class", "link");
    
-    function mouseDown(d){
-        d.fixed=true;
-    };
-   
     function mouseUp(d){
+        d.fixed=true;
         if(d.bomb && !d.visible) graph.showAll();
         graph.nodes[d.id].visible = true;
         setLabels();
@@ -75,7 +72,6 @@ function buildGraph(){
         .enter().append("g")
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
-        .on("mousedown", function(d){mouseDown(d)})
         .on("mouseup", function(d){mouseUp(d)})
         .call(drag);       
         
