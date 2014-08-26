@@ -44,7 +44,10 @@ svg {
 }
 
 #histogram-container >svg{
-    width:10%;
+    /*width:10%;*/
+    margin-left: auto;
+    position:relative;
+    float:right;
 }
 
 #histogram rect {
