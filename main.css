@@ -15,16 +15,13 @@ width:300px;
     margin-left: auto;
     margin-right: auto;
     width: 150px;
-    /*float:left;*/
 }
 
 #flag-counter-text{
-    /*position:relative;*/
     float:left;
 }
 
 #flag-counter-value {
-    /*position:relative;*/
     float:right;
 }
 
