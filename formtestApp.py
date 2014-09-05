@@ -82,7 +82,10 @@ def submit_contact_info():
     fname = request.args.get('fname', "", type=str)
     lname = request.args.get('lname', "", type=str)
     company = request.args.get('company', "", type=str)
-    persist_data(fname, lname, company)
+    data = [fname, lname, company]
+    if any(d!='' for d in data):
+        #persist_data(fname, lname, company)
+        persist_data(*data)
     #return jsonify(result=a + b)
     #return None
     return jsonify(result=None)
