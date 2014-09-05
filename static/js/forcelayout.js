@@ -1,3 +1,22 @@
+//$('#contact_info_form').attr('display','none');
+
+function endGame(){
+    graph.showAll();
+    //$('#contact_info_form').attr('display','block');
+    d3.select('#contact_info_form').classed('hidden',false);
+    
+    /*
+    $.getJSON($SCRIPT_ROOT + '/_submit_contact_info', {
+          fname: $('input[name="fname"]').val(),
+          lname: $('input[name="lname"]').val(),
+          company: $('input[name="company"]').val()
+        }, function(data) {
+          $("#result").text(data.result);
+        });
+    return false;
+    */
+}
+
 var color = d3.scale.category10().domain([0, 1, 2, 'X', 3, 4, 5, 6, 7, 8]);
 var default_color = "grey"; // this should probably be handled in the css
 
@@ -75,7 +94,7 @@ function buildGraph(){
             return 0; //Break out. Handling right click events separately
             }
         if(d.bomb && !d.visible && !d.flagged) {
-            graph.showAll();
+            endGame();            
         }else if(!d.flagged){
             graph.nodes[d.id].visible = true;
         }

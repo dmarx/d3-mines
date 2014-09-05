@@ -32,6 +32,9 @@ svg {
     float:right;
     margin-right:10px;
 }
+.hidden {
+    display:none;
+}
 
 .node {
   stroke: black;
