@@ -3,8 +3,10 @@
 function endGame(){
     graph.showAll();
     //$('#contact_info_form').attr('display','block');
-    d3.select('#contact_info_form').classed('hidden',false);
-    
+    d3.select('#contact_info_form').classed('hidden',false)
+        .attr('right', width/2)
+        .attr('top',height/2);
+    d3.select('#shade').classed('hidden',false)
     /*
     $.getJSON($SCRIPT_ROOT + '/_submit_contact_info', {
           fname: $('input[name="fname"]').val(),

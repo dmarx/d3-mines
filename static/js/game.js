@@ -36,6 +36,7 @@ function refreshGraph(){
     console.log("refreshing...");
     d3.selectAll("svg").remove();  
     d3.select('#contact_info_form').classed('hidden',true);
+    d3.select('#shade').classed('hidden',true)
     graph = randGraph(n_nodes, n_edges);
     layMines(n_bombs);    
     var network = buildGraph();
