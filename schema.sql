@@ -1,6 +1,7 @@
 
 create table entries (
   id            integer primary key autoincrement,
-  a          text not null,
-  b         text not null
+  fname          text not null,
+  lname         text not null,
+  company       text not null
 );

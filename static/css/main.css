@@ -10,7 +10,6 @@ svg {
     text-align:center;
 }
 
-
 #flag_counter  {
     z-index:2;
     position:relative;
@@ -25,6 +24,13 @@ svg {
 
 #flag-counter-value {
     float:right;
+}
+
+#contact_info_form {
+    z-index:2;
+    position:relative;
+    float:right;
+    margin-right:10px;
 }
 
 .node {

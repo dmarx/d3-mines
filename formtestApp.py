@@ -67,22 +67,24 @@ def index():
 
 def persist_data(a, b):
     print "persisting data..."
-    g.db.execute('insert into entries (a, b) values (?, ?)',
+    g.db.execute('insert into entries (fname, lname, company) values (?, ?, ?)',
                  [a, b])
     print "committing?"
     g.db.commit()
     print "persisted?"
     flash('New entry was successfully posted')
     
-# # Route that will process the AJAX request, sum up two
-# # integer numbers (defaulted to zero) and return the
-# # result as a proper JSON response (Content-Type, etc.)
-# @app.route('/_add_numbers')
-# def add_numbers():
-    # a = request.args.get('a', 0, type=int)
-    # b = request.args.get('b', 0, type=int)
-    # persist_data(a, b)
-    # return jsonify(result=a + b)
+# Route that will process the AJAX request, sum up two
+# integer numbers (defaulted to zero) and return the
+# result as a proper JSON response (Content-Type, etc.)
+@app.route('/_submit_contact_info')
+def submit_contact_info():
+    fname = request.args.get('fname', "", type=str)
+    lname = request.args.get('lname', "", type=str)
+    lname = request.args.get('company', "", type=str)
+    persist_data(fname, lname, company)
+    #return jsonify(result=a + b)
+    return None
 
 if __name__ == '__main__':
     init_db()

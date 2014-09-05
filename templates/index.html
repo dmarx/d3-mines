@@ -64,6 +64,50 @@
         <div id="flag-counter-value"></div>
     </div>
     
+    <div id="contact_info_form">
+        <form class="pure-form pure-form-aligned">
+            <fieldset>
+                  <div class="pure-control-group">
+                      <label for="fname" class="inputbox">
+                             First Name: <span id="fname-value"></span>
+                      </label>
+                      <input type="text" name=fname class="forminput">
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="lname " class="inputbox">
+                             Last Name: <span id="lname-value"></span>
+                      </label>
+                      <input type="text" name=lname class="forminput">
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="company " class="inputbox">
+                             Company: <span id="company-value"></span>
+                      </label>
+                      <input type="text" name=company class="forminput">
+                  </div>
+            </fieldset>
+            <div id="contact-submit-button-div">
+                <button type="button" class="pure-button" id="contact-submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
+    
+      <script type=text/javascript>
+    $(function() {
+      $('#contact-submit-button').bind('click', function() {
+        $.getJSON($SCRIPT_ROOT + '/_submit_contact_info', {
+          fname: $('input[name="fname"]').val(),
+          lname: $('input[name="lname"]').val(),
+          company: $('input[name="company"]').val()
+      //  }, function(data) {
+      //    $("#result").text(data.result);
+      //  });
+      });
+        return false;
+      });
+    });
+  </script>
+    
     <!--
     <script src="js/random_graph.js"></script>
     <script src="js/forcelayout.js"></script>
