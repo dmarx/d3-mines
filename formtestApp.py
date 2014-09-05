@@ -65,10 +65,10 @@ def teardown_request(exception):
 def index():
     return render_template('index.html')
 
-def persist_data(a, b):
+def persist_data(fname, lname, company):
     print "persisting data..."
     g.db.execute('insert into entries (fname, lname, company) values (?, ?, ?)',
-                 [a, b])
+                 [fname, lname, company])
     print "committing?"
     g.db.commit()
     print "persisted?"
@@ -81,10 +81,11 @@ def persist_data(a, b):
 def submit_contact_info():
     fname = request.args.get('fname', "", type=str)
     lname = request.args.get('lname', "", type=str)
-    lname = request.args.get('company', "", type=str)
+    company = request.args.get('company', "", type=str)
     persist_data(fname, lname, company)
     #return jsonify(result=a + b)
-    return None
+    #return None
+    return jsonify(result=None)
 
 if __name__ == '__main__':
     init_db()
