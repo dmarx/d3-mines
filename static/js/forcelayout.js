@@ -140,7 +140,8 @@ function buildGraph(){
         var neighborhood = graph.adjacency[d.id],
             neighbor_flags = 0;
         for(i=0; i<neighborhood.length; ++i){
-            if(graph.nodes[i].flagged) ++neighbor_flags;
+            var neighbor = graph.nodes[neighborhood[i]];
+            if(neighbor.flagged) ++neighbor_flags;
         };
         if(neighbor_flags == d.bombDegree){
             for(i=0; i<neighborhood.length; ++i){
