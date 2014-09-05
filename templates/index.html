@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">   
+    <!--     
+    <script src="lib/d3/d3.min.js"></script>
+    <script src="lib/jquery-1.11.1.min.js"></script>    
+    <link rel="stylesheet" type="text/css" href="lib/pure-min.css"> -->
+    
+    <script src="http://d3js.org/d3.v3.min.js"></script>    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+      rel="stylesheet">
+          
+    <script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+        
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    
+    
+<body>    
+
+<div id="chart"></div>
+
+<!-- guidance for form layout: http://purecss.io/forms/ -->
+<div id="leftbar">
+    <div class="inputs_parent">
+        <form class="pure-form pure-form-aligned">
+            <fieldset>
+              <div class="pure-control-group">
+                  <label for="n_nodes" class="inputbox">
+                         Nodes: <span id="n_nodes-value"></span>
+                  </label>
+                  <input type="number" min="0" max="1000" step="5" value="50" id="n_nodes" class="forminput">
+              </div>
+              <!--<br>-->
+              <div class="pure-control-group">
+                  <label for="n_edges" class="inputbox">
+                         Edges: <span id="n_edges-value"></span>
+                  </label>
+                  <input type="number" min="0" max="1000" step="5" value="150" id="n_edges" class="forminput">
+              </div>
+            <!--<br>-->
+                <div class="pure-control-group">
+                  <label for="n_bombs" class="inputbox">
+                         Bombs: <span id="n_bombs-value"></span>
+                  </label>
+                  <input type="number" min="0" max="1000" step="5" value="15" id="n_bombs" class="forminput">
+                </div>    
+            </fieldset>
+            <div id="app-reset-button-div">
+            <button type="button" class="pure-button" id="app-reset-button">New Game</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div id="flag_counter">
+        <div id="flag-counter-text">
+            <p id="flag-counter-label">Flags Remaining:</p>
+        </div>
+        <div id="flag-counter-value"></div>
+    </div>
+    
+    <!--
+    <script src="js/random_graph.js"></script>
+    <script src="js/forcelayout.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/stats.js"></script>
+    -->
+    <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/forcelayout.js')  }}"></script>
+    <script src="{{ url_for('static', filename='js/game.js')         }}"></script>
+    <script src="{{ url_for('static', filename='js/stats.js')        }}"></script>
+    <script>refreshGraph()</script>
