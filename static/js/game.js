@@ -4,8 +4,9 @@
 var n_nodes = d3.select("input#n_nodes").attr("value"),    
     n_edges = d3.select("input#n_edges").attr("value"),
     n_bombs = d3.select("input#n_bombs").attr("value"),
-    n_flags = n_bombs;
-    remaining_bombs = n_bombs;
+    n_flags = n_bombs,
+    remaining_bombs = n_bombs,
+    you_win = false,
     graph = {'nodes':[], 'links':[], 'adjacency':{}},
     width = $(window).width(),
     height = $(window).height();
@@ -35,6 +36,10 @@ d3.select("#n_bombs").on("input", function() {
 });
 
 function refreshGraph(){
+    you_win=false;
+    d3.select('#win-text').text('lose');
+    n_flags = n_bombs;
+    remaining_bombs = n_bombs;
     console.log("refreshing...");
     d3.selectAll("svg").remove();  
     d3.select('#contact_info_form').classed('hidden',true);

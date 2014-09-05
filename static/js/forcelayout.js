@@ -7,6 +7,10 @@ function endGame(){
         .attr('right', width/2)
         .attr('top',height/2);
     d3.select('#shade').classed('hidden',false)
+    if(you_win){
+        d3.select('#win-text').text('win');
+    }
+    
     /*
     $.getJSON($SCRIPT_ROOT + '/_submit_contact_info', {
           fname: $('input[name="fname"]').val(),
@@ -118,6 +122,10 @@ function buildGraph(){
                 ++remaining_bombs;
             }        
         };
+        if(remaining_bombs == 0){
+            you_win = true;
+            endGame()
+        }
             
         d3.event.preventDefault();
         setLabels();
