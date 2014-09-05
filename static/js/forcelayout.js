@@ -133,7 +133,7 @@ function buildGraph(){
         console.log(remaining_bombs);
     }
     
-    function doubleClick(d){
+    function doubleClick(d){        
         if(!d.visible){
             return null;
         };
@@ -144,11 +144,16 @@ function buildGraph(){
             if(neighbor.flagged) ++neighbor_flags;
         };
         if(neighbor_flags == d.bombDegree){
+            var tripped_bomb = false;
             for(i=0; i<neighborhood.length; ++i){
                 var target = graph.nodes[neighborhood[i]];
-                if(!target.flagged) target.visible = true;
+                if(!target.flagged) {
+                    target.visible = true;
+                    if(target.bomb) tripped_bomb = true;
+                }
             };
         }
+        if(tripped_bomb) endGame();
         setLabels()
     };
    
