@@ -108,14 +108,21 @@ function buildGraph(){
         if(!d.visible && !d.flagged){
             d.flagged = true;
             n_flags -=1;
+            if(d.bomb){
+                remaining_bombs -=1;
+            }
         } else if(!d.visible && d.flagged){
             d.flagged = false;
             ++n_flags;
+            if(d.bomb){
+                ++remaining_bombs;
+            }        
         };
             
         d3.event.preventDefault();
         setLabels();
         updateFlagsCount();
+        console.log(remaining_bombs);
     }
     
     function doubleClick(d){

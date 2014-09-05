@@ -5,6 +5,7 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     n_edges = d3.select("input#n_edges").attr("value"),
     n_bombs = d3.select("input#n_bombs").attr("value"),
     n_flags = n_bombs;
+    remaining_bombs = n_bombs;
     graph = {'nodes':[], 'links':[], 'adjacency':{}},
     width = $(window).width(),
     height = $(window).height();
@@ -26,6 +27,7 @@ d3.select("#n_edges").on("input", function() {
 d3.select("#n_bombs").on("input", function() {
     n_bombs = this.value;
     n_flags = n_bombs;
+    remaining_bombs = n_bombs;
     layMines();
     graph.hideAll();
     network.setLabels();
