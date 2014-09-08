@@ -4,5 +4,6 @@ create table entries (
   name          text not null,  
   company       text not null,
   email         text not null,
-  elapsed       integer
+  elapsed       integer,
+  win           bool
 );
