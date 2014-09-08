@@ -5,6 +5,10 @@
     <script src="lib/d3/d3.min.js"></script>
     <script src="lib/jquery-1.11.1.min.js"></script>    
     <link rel="stylesheet" type="text/css" href="lib/pure-min.css"> -->
+    <script src="{{ url_for('static', filename='lib/d3/d3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/jquery-1.11.1.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/pure-min.css') }}">
+    <!-- need the pure css library for offline use -->
     
     <script src="http://d3js.org/d3.v3.min.js"></script>    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -58,12 +62,23 @@
     </div>
 </div>
 
+<div id="center-box">
+
     <div id="flag_counter">
         <div id="flag-counter-text">
             <p id="flag-counter-label">Flags Remaining:</p>
         </div>
         <div id="flag-counter-value"></div>
     </div>
+    
+    <div id="timer">
+        <div id="timer-text">
+            <p id="timer-label">Seconds Elapsed:</p>
+        </div>
+        <div id="timer-value">0</div>
+        
+    </div>
+</div>
     
     <div id="contact_info_form" class="hidden">
         
@@ -95,7 +110,7 @@
         </form>
     </div>
     
-     <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
     <script src="{{ url_for('static', filename='js/forcelayout.js')  }}"></script>
     <script src="{{ url_for('static', filename='js/game.js')         }}"></script>
     <script src="{{ url_for('static', filename='js/stats.js')        }}"></script>

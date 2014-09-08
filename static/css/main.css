@@ -27,6 +27,29 @@ svg {
     float:right;
 }
 
+
+
+
+#timer  {
+    z-index:2;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    /*top:20px;*/
+}
+
+#timer-text{
+    float:left;
+}
+
+#timer-value { 
+    float:right;
+}
+
+
+
+
 #shade {
     position: fixed;
     width: 100%;
