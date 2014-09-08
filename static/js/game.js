@@ -46,6 +46,10 @@ function refreshGraph(){
     displayTime=0;
     $('#timer-value').text((displayTime));
     
+    /* clear email and company out of contact form for privacy*/
+    $('input[name="email"]').val("");
+    $('input[name="company"]').val("");
+    
     you_win=false;
     d3.select('#win-text').text('lose');
     n_flags = n_bombs;
