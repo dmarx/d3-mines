@@ -74,6 +74,24 @@ svg {
     top:300px;
 }
 
+#buttons-container{
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align:middle;
+    width:200px;
+}
+
+#contact-submit-button-div{
+    position:absolute;
+    float:left;
+}
+
+#scoreboard-button {
+    left:10px;
+    position:relative;
+    float:right;
+}
+
 .hidden {
     display:none;
 }
