@@ -86,22 +86,22 @@
         <form class="pure-form pure-form-aligned">
             <fieldset>
                   <div class="pure-control-group">
-                      <label for="fname" class="inputbox">
-                             First Name: <span id="fname-value"></span>
+                      <label for="name" class="inputbox">
+                             Name: <span id="name-value"></span>
                       </label>
-                      <input type="text" name=fname class="forminput">
-                  </div>
-                  <div class="pure-control-group">
-                      <label for="lname " class="inputbox">
-                             Last Name: <span id="lname-value"></span>
-                      </label>
-                      <input type="text" name=lname class="forminput">
-                  </div>
+                      <input type="text" name=name class="forminput">
+                  </div>                  
                   <div class="pure-control-group">
                       <label for="company " class="inputbox">
                              Company: <span id="company-value"></span>
                       </label>
                       <input type="text" name=company class="forminput">
+                  </div>
+                  <div class="pure-control-group">
+                      <label for="email " class="inputbox">
+                             eMail: <span id="email-value"></span>
+                      </label>
+                      <input type="text" name=email class="forminput">
                   </div>
             </fieldset>
             <div id="contact-submit-button-div">
@@ -116,6 +116,7 @@
     <script src="{{ url_for('static', filename='js/stats.js')        }}"></script>
     <script src="{{ url_for('static', filename='js/timer.js')        }}"></script>
     
+<!--
       <script type=text/javascript>
     $(function() {
       $('#contact-submit-button').bind('click', function() {
@@ -134,7 +135,7 @@
       });
     });
   </script>
-    
+-->    
     <!--
     <script src="js/random_graph.js"></script>
     <script src="js/forcelayout.js"></script>

@@ -112,3 +112,18 @@ function incrementTimer(){
 }
 
 setInterval(incrementTimer, 1000); // tenth-of-second granularity
+
+/* contact/score submission */
+$(function() {
+      $('#contact-submit-button').bind('click', function() {
+        $.getJSON($SCRIPT_ROOT + '/_submit_contact_info', {
+          name: $('input[name="name"]').val(),          
+          company: $('input[name="company"]').val(),
+          email: $('input[name="email"]').val(),
+          elapsed: time
+      }, function(data) { return false;
+      });
+        refreshGraph()
+        return false;
+      });
+    });

@@ -65,10 +65,10 @@ def teardown_request(exception):
 def index():
     return render_template('index.html')
 
-def persist_data(fname, lname, company):
+def persist_data(name, company, email, elapsed):
     print "persisting data..."
-    g.db.execute('insert into entries (fname, lname, company) values (?, ?, ?)',
-                 [fname, lname, company])
+    g.db.execute('insert into entries (name, company, email, elapsed) values (?, ?, ?, ?)',
+                 [name, company, email, elapsed])
     print "committing?"
     g.db.commit()
     print "persisted?"
@@ -79,10 +79,11 @@ def persist_data(fname, lname, company):
 # result as a proper JSON response (Content-Type, etc.)
 @app.route('/_submit_contact_info')
 def submit_contact_info():
-    fname = request.args.get('fname', "", type=str)
-    lname = request.args.get('lname', "", type=str)
+    name = request.args.get('name', "", type=str)    
     company = request.args.get('company', "", type=str)
-    data = [fname, lname, company]
+    email = request.args.get('email', "", type=str)
+    elapsed = request.args.get('elapsed', "", type=str)
+    data = [name, company, email, elapsed]
     if any(d!='' for d in data):
         #persist_data(fname, lname, company)
         persist_data(*data)
