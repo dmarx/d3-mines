@@ -111,4 +111,4 @@ function incrementTimer(){
     }
 }
 
-setInterval(incrementTimer, 100); // tenth-of-second granularity
+setInterval(incrementTimer, 1000); // tenth-of-second granularity

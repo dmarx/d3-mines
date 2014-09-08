@@ -95,6 +95,8 @@ function buildGraph(){
         .attr("class", "link");
    
     function mouseDown(d){
+        if(!timerOn){
+            timerOn=true;} // faster to just always set to true, or perform test?
         d.fixed=true;
         if(wasRightClick()){ 
             return 0; //Break out. Handling right click events separately
