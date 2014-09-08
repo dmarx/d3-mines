@@ -9,7 +9,11 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     you_win = false,
     graph = {'nodes':[], 'links':[], 'adjacency':{}},
     width = $(window).width(),
-    height = $(window).height();
+    height = $(window).height(),
+    timerOn=false,
+    time=0,
+    displayTime=0;
+
     
 d3.select("#app-reset-button").on("mouseup", function(){
         refreshGraph();
@@ -36,6 +40,12 @@ d3.select("#n_bombs").on("input", function() {
 });
 
 function refreshGraph(){
+    /* reset timer */
+    timerOn=false;
+    time=0;
+    displayTime=0;
+    $('#timer-value').text((displayTime));
+    
     you_win=false;
     d3.select('#win-text').text('lose');
     n_flags = n_bombs;
@@ -89,3 +99,16 @@ function layMines(){
         graph.nodes[id].label = label;
     }
 }
+
+/* Timer */
+function incrementTimer(){    
+    if(timerOn){
+        ++time;        
+        displayTime = (time/10) % 100;
+        if(time % 10 == 0){
+            $('#timer-value').text((displayTime));
+        }
+    }
+}
+
+setInterval(incrementTimer, 100); // tenth-of-second granularity
