@@ -1,5 +1,8 @@
 //$('#contact_info_form').attr('display','none');
 
+var longpressed = false;
+var longpressAction;
+
 function endGame(){
     graph.showAll();
     //$('#contact_info_form').attr('display','block');
@@ -95,22 +98,36 @@ function buildGraph(){
         .attr("class", "link");
    
    function mouseUp(d){
-    return false;
-   }
+    clearTimeout(longpressAction);
    
-    function mouseDown(d){
-        if(!timerOn){
+    if(!timerOn){
             timerOn=true;} // faster to just always set to true, or perform test?
         d.fixed=true;
         if(wasRightClick()){ 
             return 0; //Break out. Handling right click events separately
             }
-        if(d.bomb && !d.visible && !d.flagged) {
-            endGame();            
-        }else if(!d.flagged){
-            graph.nodes[d.id].visible = true;
+        if(longpressed){
+            console.log("calling it a longpress...");
+            rightClick(d); 
+        } else {
+            if(d.bomb && !d.visible && !d.flagged) {
+                endGame();            
+            }else if(!d.flagged){
+                graph.nodes[d.id].visible = true;
+            }
         }
         setLabels();
+       
+    longpressed=false;
+    return false;
+   }
+   
+    function mouseDown(d){
+        longpressAction =  setTimeout(function(){
+            longpressed=true;
+            console.log("longpress");
+            }, 2000);
+        
     };
     
     function rightClick(d){
