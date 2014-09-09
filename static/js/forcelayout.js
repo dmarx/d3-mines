@@ -94,6 +94,10 @@ function buildGraph(){
         .enter().append("line")
         .attr("class", "link");
    
+   function mouseUp(d){
+    return false;
+   }
+   
     function mouseDown(d){
         if(!timerOn){
             timerOn=true;} // faster to just always set to true, or perform test?
@@ -164,6 +168,7 @@ function buildGraph(){
         .enter().append("g")
         .attr("class", "node")
         .attr("id",function(d) { return 'x' + d.id;})
+        .on("mouseup", function(d){mouseUp(d)})
         .on("mousedown", function(d){mouseDown(d)})
         .on("contextmenu", function(d) {rightClick(d)} )
         .on("dblclick", function(d) {doubleClick(d)})
