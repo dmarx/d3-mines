@@ -108,7 +108,7 @@ function buildGraph(){
             }
         if(longpressed){
             console.log("calling it a longpress...");
-            rightClick(d); 
+            //rightClick(d); 
         } else {
             if(d.bomb && !d.visible && !d.flagged) {
                 endGame();            
@@ -126,6 +126,8 @@ function buildGraph(){
         longpressAction =  setTimeout(function(){
             longpressed=true;
             console.log("longpress");
+            rightClick(d); 
+            setLabels();
             }, 2000);
         
     };
@@ -150,7 +152,9 @@ function buildGraph(){
             endGame()
         }
             
-        d3.event.preventDefault();
+        if(!longpressed){
+            d3.event.preventDefault();
+        }
         setLabels();
         updateFlagsCount();
         console.log(remaining_bombs);
