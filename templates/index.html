@@ -115,6 +115,15 @@
         </form>
     </div>
     
+    <!--<div id="scoreboard" class="hidden"> -->
+    <div id="scoreboard">
+        <ol id="navigation">
+        {% for item in scoreboard %}
+            <li>{{ item.name }} {{item.score}} </li>
+        {% endfor %}
+        </ol>
+    </div>
+    
     <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
     <script src="{{ url_for('static', filename='js/forcelayout.js')  }}"></script>
     <script src="{{ url_for('static', filename='js/game.js')         }}"></script>

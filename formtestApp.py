@@ -15,6 +15,11 @@ import ConfigParser
 from contextlib import closing
 import sqlite3
 
+# This isn't getting passed into the layout. Needs to be a parameter in 
+# render_template()
+scoreboard=[{'name':"test entry", 'score':1}, 
+            {'name':"test entry", 'score':2}]
+
 config = ConfigParser.ConfigParser()
 config.read('settings.cfg')
      

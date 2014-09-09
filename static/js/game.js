@@ -12,7 +12,9 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     height = $(window).height(),
     timerOn=false,
     time=0,
-    displayTime=0;
+    displayTime=0
+    scoreboard=[{'name':"test entry", 'score':1}, {'name':"test entry", 'score':2}]
+    ;
 
     
 d3.select("#app-reset-button").on("mouseup", function(){
