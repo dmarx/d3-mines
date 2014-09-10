@@ -71,7 +71,6 @@ def index():
     return render_template('index.html')
 
 def persist_data(name, company, email, elapsed, win):
-    print "persisting data..."
     g.db.execute('insert into entries (name, company, email, elapsed, win) values (?, ?, ?, ?, ?)',
                  [name, company, email, elapsed, win])
     print "committing?"
@@ -99,8 +98,19 @@ def submit_contact_info():
 
 @app.route('/_load_scoreboard')
 def load_scoreboard():
-    top_scores = g.db.execute("SELECT name, elapsed FROM entries WHERE win = 'true' LIMIT 10").fetchall()
+    top_scores = g.db.execute("SELECT name, elapsed FROM entries WHERE win = 'true' ORDER BY elapsed LIMIT 10").fetchall()
+    n=len(top_scores)
+    name, elapsed = zip(*top_scores)
+    elaps_str = [str(e) for e in elapsed]
+    seconds = [s[:-1] for s in elaps_str]
+    dec_sec = [s[-1] for s in elaps_str]
+    elaps_str = ['{sec}.{dec}'.format(sec=s, dec=dec_sec[i]) for i,s in enumerate(seconds)]
     
+    scores=[]
+    for i in range(n):
+        scores.append({'name':name[i],'score':elaps_str[i]})
+    return jsonify(result=scores)
+        
     
 if __name__ == '__main__':
     init_db()
