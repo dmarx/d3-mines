@@ -130,6 +130,8 @@ $(function() {
           win: you_win //just for fun, let's collect scores for every game and just add a flag for whether or not the person won.
       }, function(data) { return false;
       });
+      
+        $('#scoreboard').hide();
         refreshGraph()
         return false;
       });
@@ -138,8 +140,10 @@ $(function() {
 /* scoreboard */
 // Really, I should totally be using jinja to inject this data into my document
 // but for the life of me I can't quite figure out how to do it.
-$(function() {
-    $('#scoreboard-button').bind('click', function() {        
+$(function() {    
+    $('#scoreboard-button').bind('click', function() {     
+        $('#contact_info_form').hide();
+        $('#scoreboard').show();
         $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {},
             function(response){
                 console.log(response);
