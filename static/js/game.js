@@ -158,10 +158,12 @@ $(function() {
         $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {},
             function(response){
                 console.log(response);
-                d3.select('#scoreboard-table').remove();
-                var table = d3.select('#scoreboard-table-div')
-                    .append('table')
-                    .attr('id','scoreboard-table');
+                //d3.select('#scoreboard-table').remove();
+                d3.select('#scoreboard-table>tbody').remove();
+                var table = d3.select('#scoreboard-table')
+                    .append('tbody')
+                    //.attr('id','scoreboard-table')
+                    ;
                 console.log(response.result);
                 var tr = table.selectAll('tr')
                     .data(response.result)

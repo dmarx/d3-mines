@@ -107,6 +107,10 @@ svg {
     float:right;
 }
 
+#scoreboard-newgame-button-div{
+    top:10px;
+}
+
 .hidden {
     display:none;
 }

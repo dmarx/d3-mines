@@ -105,8 +105,8 @@
                   </div>
             </fieldset>
             <div id="buttons-container">
-                <div id="contact-submit-button-div" class="newgame-button">
-                    <button type="button" class="pure-button" id="contact-submit-button">Play Again</button>
+                <div id="contact-submit-button-div">
+                    <button type="button" class="pure-button newgame-button" id="contact-submit-button">Play Again</button>
                 </div>
                 <div id="scoreboard-button-div">
                     <button type="button" class="pure-button" id="scoreboard-button">Scoreboard</button>
@@ -117,9 +117,19 @@
     
     <!--<div id="scoreboard" class="hidden"> -->
     <div id="scoreboard" style="display:none;">
-        <div id="scoreboard-table-div"></div>
-        <div id="scoreboard-newgame-button-div" class="newgame-button">
-            <button type="button" class="pure-button" id="contact-submit-button">Play Again</button>
+        <div id="scoreboard-table-div">
+        <table id="scoreboard-table" class="pure-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            
+        </table>
+        </div>
+        <div id="scoreboard-newgame-button-div">
+            <button type="button" class="pure-button newgame-button" id="scoreboard-newgame-button">Play Again</button>
         </div>
     </div>
     
