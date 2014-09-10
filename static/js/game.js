@@ -130,12 +130,23 @@ $(function() {
           win: you_win //just for fun, let's collect scores for every game and just add a flag for whether or not the person won.
       }, function(data) { return false;
       });
-      
+      /*
         $('#scoreboard').hide();
         refreshGraph()
         return false;
+        */
       });
     });
+    
+$(function() {
+    $('.newgame-button').bind('click', function() {
+        $('#scoreboard').hide();
+        $('#contact_info_form').hide();
+        refreshGraph()
+        return false;
+    });
+});
+    
     
 /* scoreboard */
 // Really, I should totally be using jinja to inject this data into my document

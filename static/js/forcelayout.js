@@ -3,6 +3,7 @@
 function endGame(){
     graph.showAll();
     //$('#contact_info_form').attr('display','block');
+    $('#contact_info_form').show(); //need to remove 'hidden' classing
     d3.select('#contact_info_form').classed('hidden',false)
         .attr('right', width/2)
         .attr('top',height/2);

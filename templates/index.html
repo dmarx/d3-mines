@@ -105,7 +105,7 @@
                   </div>
             </fieldset>
             <div id="buttons-container">
-                <div id="contact-submit-button-div">
+                <div id="contact-submit-button-div" class="newgame-button">
                     <button type="button" class="pure-button" id="contact-submit-button">Play Again</button>
                 </div>
                 <div id="scoreboard-button-div">
@@ -116,12 +116,10 @@
     </div>
     
     <!--<div id="scoreboard" class="hidden"> -->
-    <div id="scoreboard">
-        <ol id="navigation">
-        {% for item in scoreboard %}
-            <li>{{ item.name }} {{item.score}} </li>
-        {% endfor %}
-        </ol>
+    <div id="scoreboard" style="display:none;">
+        <div id="scoreboard-newgame-button-div" class="newgame-button">
+            <button type="button" class="pure-button" id="contact-submit-button">Play Again</button>
+        </div>
     </div>
     
     <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
