@@ -1,6 +1,7 @@
 //$('#contact_info_form').attr('display','none');
 
 function endGame(){
+    timerOn=false;
     graph.showAll();
     //$('#contact_info_form').attr('display','block');
     $('#contact_info_form').show(); //need to remove 'hidden' classing

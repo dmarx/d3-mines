@@ -12,7 +12,7 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     height = $(window).height(),
     timerOn=false,
     time=0,
-    displayTime=0
+    displayTime=0,
     scoreboard=[{'name':"test entry", 'score':1}, {'name':"test entry", 'score':2}]
     ;
 
@@ -159,7 +159,7 @@ $(function() {
             function(response){
                 console.log(response);
                 d3.select('#scoreboard-table').remove();
-                var table = d3.select('#scoreboard')
+                var table = d3.select('#scoreboard-table-div')
                     .append('table')
                     .attr('id','scoreboard-table');
                 console.log(response.result);

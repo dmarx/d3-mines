@@ -117,6 +117,7 @@
     
     <!--<div id="scoreboard" class="hidden"> -->
     <div id="scoreboard" style="display:none;">
+        <div id="scoreboard-table-div"></div>
         <div id="scoreboard-newgame-button-div" class="newgame-button">
             <button type="button" class="pure-button" id="contact-submit-button">Play Again</button>
         </div>
@@ -124,9 +125,10 @@
     
     <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
     <script src="{{ url_for('static', filename='js/forcelayout.js')  }}"></script>
+    <script src="{{ url_for('static', filename='js/timer.js')        }}"></script>
     <script src="{{ url_for('static', filename='js/game.js')         }}"></script>
     <script src="{{ url_for('static', filename='js/stats.js')        }}"></script>
-    <script src="{{ url_for('static', filename='js/timer.js')        }}"></script>
+    
     
 <!--
       <script type=text/javascript>
