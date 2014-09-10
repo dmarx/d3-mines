@@ -63,25 +63,29 @@ svg {
 #contact_info_form {
     z-index:10;
     position:relative;
-    margin-left: auto;
+    /*margin-left: auto;*/
     margin-right: auto;
     vertical-align:middle;
     width:500px;
     top:300px;
+    
+}
+
+#contact_info_form>p{
+    margin-left: auto;
+    margin-right: auto;
+    width:100px;
 }
 
 #scoreboard {
     z-index:10;
     position:relative;
-    margin-left: auto;
+    /*margin-left: auto;*/
+    left:100px;
     margin-right: auto;
     vertical-align:middle;
     width:200px;
     top:300px;
-}
-
-#contact_info_form>p{
-    float:left;
 }
 
 #buttons-container{
@@ -89,6 +93,7 @@ svg {
     margin-right: auto;
     vertical-align:middle;
     width:200px;
+    float:center;
 }
 
 #contact-submit-button-div{
