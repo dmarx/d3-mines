@@ -109,6 +109,7 @@ def load_scoreboard():
     scores=[]
     for i in range(n):
         scores.append({'name':name[i],'score':elaps_str[i]})
+    print scores
     return jsonify(result=scores)
         
     

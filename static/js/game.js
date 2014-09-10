@@ -134,3 +134,30 @@ $(function() {
         return false;
       });
     });
+    
+/* scoreboard */
+$(function() {
+
+    $('#scoreboard-button').bind('click', function() {        
+        $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {},
+            function(response){
+                console.log(response);
+                d3.select('#scoreboard-table').remove();
+                var table = d3.select('#scoreboard')
+                    .append('table')
+                    .attr('id','scoreboard-table');
+                
+                var tr = table.selectAll('tr')
+                    .data(response)
+                    .enter()
+                    .append('tr');
+                    
+                var td = tr.selectAll('tr')
+                    .data( function(d){return d3.values(d);} )
+                    .enter()
+                    .append('td')
+                    .text(function(d) {return d});
+                    
+            });
+    });
+});
