@@ -136,8 +136,9 @@ $(function() {
     });
     
 /* scoreboard */
+// Really, I should totally be using jinja to inject this data into my document
+// but for the life of me I can't quite figure out how to do it.
 $(function() {
-
     $('#scoreboard-button').bind('click', function() {        
         $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {},
             function(response){
@@ -146,17 +147,17 @@ $(function() {
                 var table = d3.select('#scoreboard')
                     .append('table')
                     .attr('id','scoreboard-table');
-                
+                console.log(response.result);
                 var tr = table.selectAll('tr')
-                    .data(response)
+                    .data(response.result)
                     .enter()
                     .append('tr');
                     
-                var td = tr.selectAll('tr')
+                var td = tr.selectAll('td')
                     .data( function(d){return d3.values(d);} )
                     .enter()
                     .append('td')
-                    .text(function(d) {return d});
+                    .text(function(d) {return d})
                     
             });
     });
