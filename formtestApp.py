@@ -90,13 +90,18 @@ def submit_contact_info():
     elapsed = request.args.get('elapsed', "", type=str)
     win = request.args.get('win', "", type=str)
     data = [name, company, email, elapsed, win]
-    if any(d!='' for d in data):
+    if any(d!='' for d in data[:3]):
         #persist_data(fname, lname, company)
         persist_data(*data)
     #return jsonify(result=a + b)
     #return None
     return jsonify(result=None)
 
+@app.route('/_load_scoreboard')
+def load_scoreboard():
+    top_scores = g.db.execute("SELECT name, elapsed FROM entries WHERE win = 'true' LIMIT 10").fetchall()
+    
+    
 if __name__ == '__main__':
     init_db()
     app.run()
