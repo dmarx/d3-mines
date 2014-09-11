@@ -22,15 +22,15 @@ function updateFlagsCount(){
 
 /* main difficulty selectors */
 function setDifficulty(diff){
-    if(diff=='easy'){
+    if(diff=='Easy'){
         n_nodes=10;
         n_edges=20;
         n_bombs=2;
-    } else if(diff=='medium'){
+    } else if(diff=='Medium'){
         n_nodes=25;
         n_edges=55;
         n_bombs=5;
-    } else if(diff=='hard'){
+    } else if(diff=='Hard'){
         n_nodes=60;
         n_edges=100;
         n_bombs=15;
@@ -38,7 +38,7 @@ function setDifficulty(diff){
     n_flags = n_bombs;
 }
 
-var difficulty='easy';
+var difficulty='Easy';
 setDifficulty(difficulty)
 
 $(document).ready(function() {
