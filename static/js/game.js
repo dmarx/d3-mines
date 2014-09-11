@@ -207,12 +207,10 @@ $(function() {
                     .enter()
                     .append('tr');
                     
-                var td = tr.selectAll('td')
-                    .data( function(d){return d3.values(d);} )
-                    .enter()
-                    .append('td')
-                    .text(function(d) {return d})
-                    
+                    tr.append('td').text(function(d){return d.difficulty});
+                    tr.append('td').text(function(d){return d.name});
+                    tr.append('td').text(function(d){return d.company});
+                    tr.append('td').text(function(d){return d.score});
             });
     });
 });
