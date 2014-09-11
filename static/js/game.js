@@ -22,6 +22,7 @@ function updateFlagsCount(){
 
 /* main difficulty selectors */
 function setDifficulty(diff){
+    difficulty=diff;
     if(diff=='Easy'){
         n_nodes=10;
         n_edges=20;
@@ -191,7 +192,7 @@ $(function() {
     $('#scoreboard-button').bind('click', function() {     
         $('#contact_info_form').hide();
         $('#scoreboard').show();
-        $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {},
+        $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {'difficulty':difficulty},
             function(response){
                 console.log(response);
                 //d3.select('#scoreboard-table').remove();

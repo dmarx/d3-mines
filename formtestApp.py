@@ -96,7 +96,8 @@ def submit_contact_info():
 
 @app.route('/_load_scoreboard')
 def load_scoreboard():
-    top_scores = g.db.execute("SELECT difficulty, name, elapsed FROM entries WHERE win = 'true' ORDER BY elapsed LIMIT 10").fetchall()
+    difficulty = request.args.get('difficulty', "", type=str) 
+    top_scores = g.db.execute("SELECT difficulty, name, elapsed FROM entries WHERE win = 'true' AND difficulty = ? ORDER BY elapsed LIMIT 10", [difficulty]).fetchall()
     n=len(top_scores)
     difficulty, name, elapsed = zip(*top_scores)
     elaps_str = [str(e) for e in elapsed]
