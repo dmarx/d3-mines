@@ -16,7 +16,9 @@ var n_nodes = 10,//d3.select("input#n_nodes").attr("value"),
     scoreboard=[{'name':"test entry", 'score':1}, {'name':"test entry", 'score':2}]
     ;
 
-var flag_counter = d3.select("#flag-counter-value").data(n_flags);
+//var flag_counter = d3.select("#flag-counter-value").data(n_flags);
+var flag_counter = d3.select("#flag-counter-value")
+//flag_counter.data(n_flags);
 flag_counter.append("p").text(n_flags); //id setter not working properly.
 
 function updateFlagsCount(){
@@ -40,7 +42,7 @@ function setDifficulty(diff){
         n_bombs=15;
     }
     n_flags = n_bombs;
-    updateFlagsCount();
+    //updateFlagsCount();
 }
 
 var difficulty='easy';
