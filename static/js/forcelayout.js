@@ -181,7 +181,13 @@ function buildGraph(){
         .attr("id",function(d) { return 'x' + d.id;})
         .attr("r", 12);
     
-        node.append("circle")
+    var labels = node.append("text")
+            .attr("dx", -4)
+            .attr("dy", ".35em")
+            .attr("id", function(d) { return 'x' + d.id; })
+            .text(function(d) { "" });
+    
+    node.append("circle")
         .attr("class", "halo")
         .attr("id",function(d) { return 'x' + d.id;})
         .attr("r", 16)
@@ -189,17 +195,14 @@ function buildGraph(){
         ;
     
     function setLabels(){
-        node.select("text").remove();
         node.select("circle").attr("fill", default_color);
         
         node.classed("visible", function(d){return d.visible});
         node.classed("flagged", function(d){return d.flagged});
-        node.filter(".visible")
-            .append("text")
-            .attr("dx", -4)
-            .attr("dy", ".35em")
-            .attr("id", function(d) { return 'x' + d.id; })
+        labels.classed("visible", function(d){return d.visible});
+        labels.filter(".visible")
             .text(function(d) { return d.label; });
+            
         node.select(".visible>circle.node").attr("fill", function(d){return color(d.label)});
         node.select("circle.halo").attr("stroke-opacity", 0);
         node.select(".flagged>circle.halo").attr("stroke-opacity", 1);
