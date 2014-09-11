@@ -70,9 +70,9 @@ def teardown_request(exception):
 def index():
     return render_template('index.html')
 
-def persist_data(name, company, email, elapsed, win):
-    g.db.execute('insert into entries (name, company, email, elapsed, win) values (?, ?, ?, ?, ?)',
-                 [name, company, email, elapsed, win])
+def persist_data(name, company, email, elapsed, difficulty, win):
+    g.db.execute('insert into entries (name, company, email, elapsed, difficulty, win) values (?, ?, ?, ?, ?, ?)',
+                 [name, company, email, elapsed, difficulty, win])
     print "committing?"
     g.db.commit()
     print "persisted?"
@@ -87,13 +87,11 @@ def submit_contact_info():
     company = request.args.get('company', "", type=str)
     email = request.args.get('email', "", type=str)
     elapsed = request.args.get('elapsed', "", type=str)
+    difficulty = request.args.get('difficulty', "", type=str)
     win = request.args.get('win', "", type=str)
-    data = [name, company, email, elapsed, win]
+    data = [name, company, email, elapsed, difficulty, win]
     if any(d!='' for d in data[:3]):
-        #persist_data(fname, lname, company)
         persist_data(*data)
-    #return jsonify(result=a + b)
-    #return None
     return jsonify(result=None)
 
 @app.route('/_load_scoreboard')
