@@ -7,8 +7,19 @@ svg {
     z-index:2;
     position:absolute;
     width:300px;
+    /*text-align:center;*/
+    left:20px;
+}
+
+#custom-difficulty-div {
     text-align:center;
 }
+
+/*
+#difficulty-selector-div {
+    left:20px;
+}
+*/
 
 #flag_counter  {
     z-index:2;

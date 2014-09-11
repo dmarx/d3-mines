@@ -1,9 +1,9 @@
 // input form guidance: http://bl.ocks.org/d3noob/10633704
 // simple d3 force layout: http://bl.ocks.org/mbostock/4062045
 
-var n_nodes = d3.select("input#n_nodes").attr("value"),    
-    n_edges = d3.select("input#n_edges").attr("value"),
-    n_bombs = d3.select("input#n_bombs").attr("value"),
+var n_nodes = 10,//d3.select("input#n_nodes").attr("value"),    
+    n_edges = 20,//d3.select("input#n_edges").attr("value"),
+    n_bombs = 2,//d3.select("input#n_bombs").attr("value"),
     n_flags = n_bombs,
     remaining_bombs = n_bombs,
     you_win = false,
@@ -16,7 +16,38 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     scoreboard=[{'name':"test entry", 'score':1}, {'name':"test entry", 'score':2}]
     ;
 
+/* main difficulty selectors */
+function setDifficulty(diff){
+    if(diff=='easy'){
+        n_nodes=10;
+        n_edges=20;
+        n_bombs=2;
+        n_flags=2;
+    } else if(diff=='medium'){
+        n_nodes=25;
+        n_edges=55;
+        n_bombs=5;
+        n_flags=5;
+    } else if(diff=='hard'){
+        n_nodes=60;
+        n_edges=100;
+        n_bombs=15;
+        n_flags=9;
+    }
+}
+
+var difficulty='easy';
+setDifficulty(difficulty)
+
+$(document).ready(function() {
+    $('input[type=radio][name=difficulty]').change(function() {
+        setDifficulty(this.value);
+        refreshGraph();
+    });
+});
     
+    
+/* custom difficulty selectors */    
 d3.select("#app-reset-button").on("mouseup", function(){
         refreshGraph();
     });
@@ -40,6 +71,8 @@ d3.select("#n_bombs").on("input", function() {
     network.setLabels();
     updateFlagsCount();
 });
+
+
 
 function refreshGraph(){
     /* reset timer */
