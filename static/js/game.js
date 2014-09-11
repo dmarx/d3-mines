@@ -1,9 +1,9 @@
 // input form guidance: http://bl.ocks.org/d3noob/10633704
 // simple d3 force layout: http://bl.ocks.org/mbostock/4062045
 
-var n_nodes = d3.select("input#n_nodes").attr("value"),    
-    n_edges = d3.select("input#n_edges").attr("value"),
-    n_bombs = d3.select("input#n_bombs").attr("value"),
+var n_nodes = 10,//d3.select("input#n_nodes").attr("value"),    
+    n_edges = 20,//d3.select("input#n_edges").attr("value"),
+    n_bombs = 2,//d3.select("input#n_bombs").attr("value"),
     n_flags = n_bombs,
     remaining_bombs = n_bombs,
     you_win = false,
@@ -16,7 +16,41 @@ var n_nodes = d3.select("input#n_nodes").attr("value"),
     scoreboard=[{'name':"test entry", 'score':1}, {'name':"test entry", 'score':2}]
     ;
 
+function updateFlagsCount(){
+    $('#flag-counter-value').text(n_flags);
+    };
+
+/* main difficulty selectors */
+function setDifficulty(diff){
+    difficulty=diff;
+    if(diff=='Easy'){
+        n_nodes=10;
+        n_edges=20;
+        n_bombs=2;
+    } else if(diff=='Medium'){
+        n_nodes=25;
+        n_edges=55;
+        n_bombs=5;
+    } else if(diff=='Hard'){
+        n_nodes=60;
+        n_edges=100;
+        n_bombs=15;
+    }
+    n_flags = n_bombs;
+}
+
+var difficulty='Easy';
+setDifficulty(difficulty)
+
+$(document).ready(function() {
+    $('input[type=radio][name=difficulty]').change(function() {
+        setDifficulty(this.value);
+        refreshGraph();
+    });
+});
     
+    
+/* custom difficulty selectors */    
 d3.select("#app-reset-button").on("mouseup", function(){
         refreshGraph();
     });
@@ -40,6 +74,8 @@ d3.select("#n_bombs").on("input", function() {
     network.setLabels();
     updateFlagsCount();
 });
+
+
 
 function refreshGraph(){
     /* reset timer */
@@ -127,6 +163,7 @@ $(function() {
           company: $('input[name="company"]').val(),
           email: $('input[name="email"]').val(),
           elapsed: time,
+          difficulty: difficulty,
           win: you_win //just for fun, let's collect scores for every game and just add a flag for whether or not the person won.
       }, function(data) { return false;
       });
@@ -155,7 +192,7 @@ $(function() {
     $('#scoreboard-button').bind('click', function() {     
         $('#contact_info_form').hide();
         $('#scoreboard').show();
-        $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {},
+        $.getJSON($SCRIPT_ROOT + '/_load_scoreboard', {'difficulty':difficulty},
             function(response){
                 console.log(response);
                 //d3.select('#scoreboard-table').remove();
