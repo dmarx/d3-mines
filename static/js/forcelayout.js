@@ -117,7 +117,7 @@ function buildGraph(){
     
     function rightClick(d){
         //if(!d.visible){d.flagged = !d.flagged;};
-        if(!d.visible && !d.flagged){
+        if(!d.visible && !d.flagged && n_flags >0){
             d.flagged = true;
             n_flags -=1;
             if(d.bomb){
