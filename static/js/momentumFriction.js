@@ -36,7 +36,7 @@ function winAnimation(){
                 .attr("class", "node")
                 .attr("cx", function (d) {return d.x;})
                 .attr("cy", function (d) {return d.y;})
-                .style("fill", function(d) {console.log(d.col); return color(d.col); })
+                .style("fill", function(d) { return color(d.col); })
                 .style("stroke", function(d) { return color(d.col); })
                 .attr("r", 1e-5)
                 //.attr("opacity",1)
