@@ -149,9 +149,11 @@ function layMines(){
 function incrementTimer(){    
     if(timerOn){
         ++time;        
-        displayTime = (time/10) % 100;
+        //displayTime = (time/10) % 100;
         if(time % 10 == 0){
-            $('#timer-value').text((displayTime));
+            ++displayTime;
+            //$('#timer-value').text((displayTime));
+            $('#timer-value').text(Math.floor(displayTime));
         }
     }
 }
