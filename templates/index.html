@@ -36,7 +36,7 @@
 
 
 <div id="banner-div">
-    <img id="banner" src="{{ url_for('static', filename='img/ERI_Logo_2011_1600x316.png') }}">
+    <img id="banner" width=754 src="{{ url_for('static', filename='img/ERI_Logo_2011_1600x316.png') }}">
 </div>
 
 <div id=shade class="hidden"></div>
@@ -186,7 +186,20 @@
 -->
     
 <div id="instructions">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<h1>How To Play</h1>
+<strong>Left-click</strong>: reveal/drag<br>
+<strong>Right-click</strong>: place/remove flag<br>
+<strong>Left-doubleclick</strong>: reveal all touching tiles if double-clicked tile is touching correct number of flagged tiles<br>
+<br>
+This game is essentially minesweeper except instead of a grid, the game "tiles" are in a connected "graph."
+A graph is a mathematical object that encodes relationships between entities in a system. In the case of this
+demonstration, the entities are "tiles" and the relationship is "touching." All tiles that are 
+connected by a line (or in graph jargon, an "edge" or "link") are "touching" in this sense. 
+<br>
+Some tiles are bombs: revealing (left-clicking) on a bomb tile loses the game. Revealing tiles that are not
+bombs tells you the number of bombs that tile is touching.
+<br>
+After playing, provide your email to learn more about how this game was made!
 </div>
     
     <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>
