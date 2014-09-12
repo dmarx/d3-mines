@@ -2,7 +2,8 @@ function winAnimation(){
 
     var anim = d3.layout.force()
             .gravity(0)
-            .charge(0)
+            //.charge(0)
+            .charge(-60)
             .friction(0.95);
 
     var svg2 = d3.select("#animation").append("svg:svg");
