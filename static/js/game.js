@@ -91,6 +91,9 @@ function refreshGraph(){
     $('input[name="email"]').val("");
     //$('input[name="company"]').val("");
     
+    /* Kill win animation */
+    $('#animation').hide();
+    
     you_win=false;
     d3.select('#win-text').text('lose');
     n_flags = n_bombs;

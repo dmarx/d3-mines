@@ -75,6 +75,15 @@ svg {
     z-index: 3;
 }
 
+#animation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9;
+}
+
 #contact_info_form {
     z-index:10;
     position:relative;
@@ -175,3 +184,26 @@ h2 {
     right:320px;
     top:18px;
 }
+
+
+
+/****************************/
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+
+
+        */

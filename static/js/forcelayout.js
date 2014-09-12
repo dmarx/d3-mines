@@ -8,9 +8,12 @@ function endGame(){
     d3.select('#contact_info_form').classed('hidden',false)
         .attr('right', width/2)
         .attr('top',height/2);
-    d3.select('#shade').classed('hidden',false)
+    d3.select('#shade').classed('hidden',false);
     if(you_win){
         d3.select('#win-text').text('win');
+        //d3.select('#animation').classed('hidden',false);
+        $('#animation').show();
+        winAnimation();
     }
     
     /*
