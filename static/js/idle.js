@@ -1,6 +1,6 @@
 idleTimer = null;
 idleState = true;
-idleWait = 2000;
+idleWait = 10000;
 
 $("#instructions").hide();
 
