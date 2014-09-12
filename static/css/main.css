@@ -185,7 +185,16 @@ h2 {
     top:18px;
 }
 
-
+#instructions {
+    z-index:10;
+    position:relative;
+    /*margin-left: auto;*/
+    right:100px;
+    margin-left: auto;
+    vertical-align:middle;
+    width:420px;
+    top:225px;
+}
 
 /****************************/
 
@@ -206,4 +215,4 @@ h2 {
 
 
 
-        */
+        
