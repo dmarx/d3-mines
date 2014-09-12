@@ -23,6 +23,8 @@ svg {
 }
 */
 
+
+
 #flag_counter  {
     z-index:2;
     position:relative;
@@ -152,4 +154,24 @@ svg {
 .link {
   stroke: #999;
   stroke-opacity: .6;
+}
+
+h2 {
+    font-size: 130%;
+}
+
+#center-box {
+    float:right;
+    width:500px;
+}
+
+#center-box >.reactive{
+    float:right;
+    width:500px;
+}
+
+.value {
+    position:relative;
+    right:320px;
+    top:18px;
 }
