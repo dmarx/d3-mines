@@ -16,6 +16,9 @@ var n_nodes = 10,//d3.select("input#n_nodes").attr("value"),
     scoreboard=[{'name':"test entry", 'score':1}, {'name':"test entry", 'score':2}]
     ;
 
+/* This totally doesn't belong here */
+$('#banner').attr("width", width*2/5);
+    
 function updateFlagsCount(){
     $('#flag-counter-value').text(n_flags);
     };

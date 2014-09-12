@@ -67,6 +67,7 @@ function buildGraph(){
         var targetWidth = chart.parent().width();
         chart.attr("width", targetWidth);
         chart.attr("height", targetWidth / aspect);
+        $('#banner').attr("width", 2*targetWidth/3);
     });
           
     var force = d3.layout.force()
