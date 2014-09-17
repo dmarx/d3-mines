@@ -189,17 +189,13 @@
 <h1>How To Play</h1>
 <strong>Left-click</strong>: reveal/drag<br>
 <strong>Right-click</strong>: place/remove flag<br>
-<strong>Left-doubleclick</strong>: reveal all touching tiles if double-clicked tile is touching correct number of flagged tiles
+<strong>Left-doubleclick</strong>: reveal all touching tiles if touching correct number of flags
 <br><br>
 This game is essentially minesweeper except instead of a grid, the game "tiles" are in a connected "graph."
-A graph is a mathematical object that encodes relationships between entities in a system. In the case of this
-demonstration, the entities are "tiles" and the relationship is "touching." All tiles that are 
-connected by a line (or in graph jargon, an "edge" or "link") are "touching" in this sense. 
+A graph is a mathematical object that encodes relationships between entities in a system.
 <br><br>
-Some tiles are bombs: revealing (left-clicking) on a bomb tile loses the game. Revealing tiles that are not
-bombs tells you the number of bombs that tile is touching.
-<br><br>
-After playing, provide your email to learn more about how this game was made!
+Some tiles are bombs: revealing (left-clicking) on a bomb loses the game. Revealing tiles that are not
+bombs tells you the number of bombs that tile is touching. After playing, provide your email to learn more about how this game was made!
 </div>
     
     <script src="{{ url_for('static', filename='js/random_graph.js') }}"></script>

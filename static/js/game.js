@@ -31,13 +31,13 @@ function setDifficulty(diff){
         n_edges=20;
         n_bombs=2;
     } else if(diff=='Medium'){
+        n_nodes=15;
+        n_edges=32;
+        n_bombs=3;
+    } else if(diff=='Hard'){
         n_nodes=25;
         n_edges=55;
         n_bombs=5;
-    } else if(diff=='Hard'){
-        n_nodes=60;
-        n_edges=100;
-        n_bombs=15;
     }
     n_flags = n_bombs;
 }
